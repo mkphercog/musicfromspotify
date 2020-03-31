@@ -1,15 +1,31 @@
-.loginpage__loginBtn {
-  padding: 10px 20px;
-  font-size: 20px;
-  text-decoration: none;
-  text-transform: uppercase;
-  border: 2px solid green;
-  border-radius: 30px;
-  color: green;
-}
+.loginpage__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 50px;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
 
-.loginpage__registerBtn {
-  margin-top: 10px;
-  color: darkred;
-  font-size: 15px;
+  .loginpage__loginBtn {
+    padding: 10px 20px;
+    font-size: 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 2px solid #1db954;
+    border-radius: 30px;
+    color: #1db954;
+    transition: 0.2s;
+  }
+
+  .loginpage__loginBtn:hover {
+    background-color: #1db954;
+    color: black;
+  }
+
+  .loginpage__registerBtn {
+    margin-top: 10px;
+    color: rgb(156, 74, 74);
+    font-size: 14px;
+  }
 }
