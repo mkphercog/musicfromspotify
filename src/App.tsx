@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./App.scss";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { WebsitePage } from "./pages/WebsitePage/WebsitePage";
 import { getOptionsToConnect } from "./authorization/config";
 import { useDispatch, useSelector } from "react-redux";
 import { setAccessToken } from "./store/actions/AuthorizationActions";
@@ -34,5 +35,7 @@ export const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div className="App">{accessToken ? null : <LoginPage />}</div>;
+  return (
+    <div className="App">{accessToken ? <WebsitePage /> : <LoginPage />}</div>
+  );
 };
