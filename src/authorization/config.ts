@@ -5,7 +5,7 @@ const SCOPES: string = "user-read-email";
 
 export const URL: string = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&scope=${SCOPES}`;
 
-const getCodeFromUrl = () => {
+export const getCodeFromUrl = () => {
   const websiteHref = window.location.href;
 
   if (websiteHref.includes("code")) {
