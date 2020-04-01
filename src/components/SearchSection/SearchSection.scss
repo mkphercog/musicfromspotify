@@ -1,4 +1,17 @@
 .searchsection {
   flex-basis: 25vw;
-  background-color: yellow;
+
+  display: flex;
+  flex-direction: column;
+  background-color: silver;
+  .searchsection__title {
+    padding: 10px;
+  }
+
+  .searchsection__form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 10px auto;
+  }
 }

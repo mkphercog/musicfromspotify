@@ -1,0 +1,17 @@
+.searchsection__result {
+  margin-top: 10px;
+  border-top: 2px solid black;
+
+  .searchsection__description {
+    padding: 5px;
+  }
+
+  .searchsection__addToFavourite {
+    width: 50%;
+    padding: 5px;
+    margin: 5px auto;
+    background-color: white;
+    border: 2px solid black;
+    font-size: 14px;
+  }
+}
