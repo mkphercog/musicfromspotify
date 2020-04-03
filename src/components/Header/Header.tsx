@@ -4,5 +4,5 @@ import "./Header.scss";
 export interface HeaderProps {}
 
 export const Header: React.SFC<HeaderProps> = () => {
-  return <header className="header">HEADER</header>;
+  return <header className="header">Music from Spotify</header>;
 };

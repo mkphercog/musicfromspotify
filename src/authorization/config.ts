@@ -46,3 +46,36 @@ export const getOptionsToConnect = () => {
     codeToGetAccess: codeToGetAccess
   };
 };
+
+export const refreshAccessToken = (
+  refresh_token: string,
+  dispatch: Function,
+  setAccessTokens: Function,
+  searchAlbums: Function
+) => {
+  const urlencoded = new URLSearchParams();
+  urlencoded.append("grant_type", "refresh_token");
+  urlencoded.append("refresh_token", refresh_token);
+
+  const myHeaders = new Headers();
+  myHeaders.append(
+    "Authorization",
+    `Basic ${btoa(CLIENT_ID + ":" + CLIENT_SECRET)}`
+  );
+
+  fetch(`https://accounts.spotify.com/api/token`, {
+    method: "POST",
+    headers: myHeaders,
+    body: urlencoded
+  })
+    .then(res => {
+      if (res.status === 200) {
+        return res.json();
+      }
+    })
+    .then(res => {
+      dispatch(setAccessTokens(res.access_token, refresh_token));
+      dispatch(searchAlbums([]));
+    });
+  return;
+};
