@@ -36,7 +36,7 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
         return false;
       }
     );
-    console.log(isDisabled);
+    // console.log(isDisabled);
     return (
       <div key={album.id} className="searchsection__result">
         <p className="searchsection__description">{album.name}</p>
@@ -48,15 +48,15 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
           onClick={() => {
             fetch(`https://api.spotify.com/v1/albums/${album.id}/tracks`, {
               headers: {
-                Authorization: `Bearer ${accessToken}`
-              }
+                Authorization: `Bearer ${accessToken}`,
+              },
             })
-              .then(res => {
+              .then((res) => {
                 if (res.status === 200) {
                   return res.json();
                 }
               })
-              .then(res => {
+              .then((res) => {
                 dispatch(
                   addAlbumToFavourite(
                     album.images[1].url,

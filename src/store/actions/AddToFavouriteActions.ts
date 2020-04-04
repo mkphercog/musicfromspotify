@@ -1,4 +1,4 @@
-import { ADD_ALBUM_TO_LIST } from "../types";
+import { ADD_ALBUM_TO_LIST, DELETE_ALBUM_FROM_LIST } from "../types";
 
 type FavouriteAlbum = (
   albumIMG: string,
@@ -23,5 +23,10 @@ export const addAlbumToFavourite: FavouriteAlbum = (
   albumName: albumName,
   artistName: artistName,
   tracks: tracks,
-  spotifyAlbumURL: spotifyAlbumURL
+  spotifyAlbumURL: spotifyAlbumURL,
+});
+
+export const deleteAlbumFromList = (albumID: string) => ({
+  type: DELETE_ALBUM_FROM_LIST,
+  albumID: albumID,
 });
