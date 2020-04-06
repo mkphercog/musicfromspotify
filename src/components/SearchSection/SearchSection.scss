@@ -1,10 +1,11 @@
 .searchsection {
   flex-basis: 25vw;
   flex-shrink: 0;
-
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
-  background-color: silver;
+  background-color: lightgray;
+
   .searchsection__title {
     padding: 10px;
   }

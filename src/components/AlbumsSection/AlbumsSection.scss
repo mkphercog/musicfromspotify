@@ -17,6 +17,7 @@
     .albumssection__image {
       width: 80%;
       box-shadow: 0 0 5px 1px black;
+      border-radius: 15px;
     }
 
     .albumssection__hoverDiv:hover {
@@ -57,13 +58,103 @@
   }
 
   .albumssection__detailsAlbum {
-    display: none;
+    display: flex; // flex when visible is true
+    justify-content: flex-start;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80vw;
     height: 60vh;
-    background-color: lightgray;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    box-shadow: 0 0 8px 3px black;
+
+    .albumssection__albumInfoWrapper {
+      flex-shrink: 0;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+
+      .albumssection__detailsImage {
+        margin: 15px;
+      }
+      .albumssection__detailsArtistName {
+        font-size: 22px;
+      }
+      .albumssection__detailsAlbumName {
+        font-size: 18px;
+      }
+
+      .albumssection__detailsFullAlbumSpotify {
+        margin: 5px auto;
+        padding: 5px 10px;
+        width: 75%;
+        border: 2px solid black;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+      }
+
+      .albumssection__detailsDeleteAlbum {
+        margin: 5px auto 20px;
+        padding: 5px 10px;
+        width: 75%;
+        border: 2px solid darkred;
+        text-decoration: none;
+        text-transform: uppercase;
+        background-color: transparent;
+        color: darkred;
+        cursor: pointer;
+      }
+    }
+
+    .albumssection__detailsClose {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      font-size: 30px;
+      font-weight: bold;
+      background-color: transparent;
+      border: transparent;
+      cursor: pointer;
+    }
+
+    .albumssection__tracksWrapper {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin: 10px 10px 10px 50px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      .albumssection__detailsTrackButton {
+        padding: 5px 10px;
+        margin: 0 5px 5px;
+        background-color: transparent;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: bold;
+        outline-style: none;
+        border: 2px solid darkgray;
+        cursor: pointer;
+      }
+
+      .albumssection__trackWrapper {
+        display: flex;
+        justify-content: flex-start;
+
+        .albumssection__detailsTrackName {
+          padding: 5px;
+        }
+
+        .albumssection__detailsTrackName--green {
+          color: #1db954;
+        }
+      }
+    }
   }
 }

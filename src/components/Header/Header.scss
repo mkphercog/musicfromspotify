@@ -1,4 +1,19 @@
 .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 15vh;
-  background-color: rgb(221, 216, 216);
+  margin-bottom: 10px;
+  background-color: whitesmoke;
+  // border-radius: 20px;
+  // box-shadow: 0 0 5px 2px black;
+
+  .header__title {
+    font-size: 40px;
+    text-transform: uppercase;
+
+    .header__spotify {
+      color: #1db954;
+    }
+  }
 }

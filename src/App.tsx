@@ -23,7 +23,7 @@ export const App = () => {
           throw new Error();
         })
         .then((res: { access_token: string; refresh_token: string }) => {
-          console.log(res);
+          // console.log(res);
           dispatch(setAccessTokens(res.access_token, res.refresh_token));
           localStorage.setItem("access_token", res.access_token);
           localStorage.setItem("refresh_token", res.refresh_token);

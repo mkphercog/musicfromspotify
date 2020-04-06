@@ -1,7 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./AlbumsSection.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteAlbumFromList } from "../../store/actions/AddToFavouriteActions";
+import {
+  setAndPlayCurrentTrack,
+  stopMusic,
+} from "../../store/actions/PlayerActions";
+import {
+  hideAlbumDetails,
+  showAlbumDetails,
+  setAlbumDetails,
+} from "../../store/actions/AlbumDetailsActions";
 
 export interface AlbumsSectionProps {}
 
@@ -26,34 +35,27 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
     (state: { favouriteAlbums: { favouriteAlbums: [] } }) =>
       state.favouriteAlbums.favouriteAlbums
   );
+  const currentTrack = useSelector(
+    (state: { player: { trackURL: string } }) => state.player.trackURL
+  );
+  const isPlaying = useSelector(
+    (state: { player: { isPlaying: boolean } }) => state.player.isPlaying
+  );
+  const albumDetails = useSelector(
+    (state: { albumDetails: { albumDetails: Album } }) =>
+      state.albumDetails.albumDetails
+  );
   const dispatch = useDispatch();
-  const [idDetailsAlbumVisible, setDetailsAlbumVisible] = useState(false);
-  const [albumDetails, setAlbumDetails] = useState<Album>({
-    albumIMG: "",
-    albumID: "",
-    albumName: "",
-    artistName: "",
-    tracks: [],
-    spotifyAlbumURL: "",
-  });
+
+  const albumDetailsVisible = useSelector(
+    (state: { albumDetails: { isAlbumDetailsVisible: boolean } }) =>
+      state.albumDetails.isAlbumDetailsVisible
+  );
+  // if (isPlaying) {
+  //   setTimeout(() => dispatch(stopMusic()), 29000);
+  // }
 
   const albums = favouriteAlbums.map((album: Album) => {
-    const tracksList = album.tracks.map((track: Track) => {
-      const audioTrack = new Audio(track.preview_url);
-      return (
-        <div key={track.id}>
-          <p>
-            {track.track_number}. {track.name}
-          </p>
-          {track.preview_url === null ? null : (
-            <>
-              <button onClick={() => audioTrack.play()}>Play</button>
-              <button onClick={() => audioTrack.pause()}>Pause</button>
-            </>
-          )}
-        </div>
-      );
-    });
     return (
       <div key={album.albumID} className="albumssection__wrapper">
         <img
@@ -65,15 +67,16 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
         <div
           className="albumssection__hoverDiv"
           onClick={() => {
-            setAlbumDetails({
+            const obj = {
               albumIMG: album.albumIMG,
               albumID: album.albumID,
               albumName: album.albumName,
               artistName: album.artistName,
-              tracks: tracksList,
+              tracks: album.tracks,
               spotifyAlbumURL: album.spotifyAlbumURL,
-            });
-            setDetailsAlbumVisible(true);
+            };
+            dispatch(showAlbumDetails());
+            dispatch(setAlbumDetails(obj));
           }}
         >
           <h1>{album.artistName}</h1>
@@ -83,26 +86,92 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
     );
   });
 
+  const tracksListCurrentAlbum = albumDetails.tracks.map((track: Track) => {
+    const answer =
+      isPlaying && currentTrack === track.preview_url ? true : false;
+    const classes = answer
+      ? "albumssection__detailsTrackName albumssection__detailsTrackName--green"
+      : "albumssection__detailsTrackName";
+    return (
+      <div className="albumssection__trackWrapper" key={track.id}>
+        {track.preview_url ? (
+          answer ? (
+            <button
+              className="albumssection__detailsTrackButton"
+              onClick={() => {
+                dispatch(stopMusic());
+              }}
+            >
+              Stop
+            </button>
+          ) : (
+            <button
+              className="albumssection__detailsTrackButton"
+              onClick={() => {
+                dispatch(setAndPlayCurrentTrack(track.preview_url));
+              }}
+            >
+              Play
+            </button>
+          )
+        ) : null}
+
+        <p className={classes}>
+          {track.track_number}. {track.name}
+        </p>
+      </div>
+    );
+  });
+
   return (
     <section className="albumssection">
-      {albums.reverse()}
-      <div
-        style={{ display: `${idDetailsAlbumVisible ? "block" : "none"}` }}
-        className="albumssection__detailsAlbum"
-      >
-        <h1>{albumDetails.albumName}</h1>
-        {albumDetails.tracks}
-        <a href={albumDetails.spotifyAlbumURL}>Pełny album znajdziesz tutaj</a>
-        <button onClick={() => setDetailsAlbumVisible(false)}>X</button>
-        <button
-          onClick={() => {
-            setDetailsAlbumVisible(false);
-            dispatch(deleteAlbumFromList(albumDetails.albumID));
-          }}
-        >
-          USUŃ ALBUM
-        </button>
-      </div>
+      {albums.length ? (
+        albums.reverse()
+      ) : (
+        <div className="albumssection__wrapper">Brak danych</div>
+      )}
+
+      {albumDetailsVisible ? (
+        <div className="albumssection__detailsAlbum">
+          <div className="albumssection__albumInfoWrapper">
+            <img
+              className="albumssection__detailsImage"
+              src={albumDetails.albumIMG}
+              alt="Album"
+            />
+            <h1 className="albumssection__detailsArtistName">
+              {albumDetails.artistName}
+            </h1>
+            <h2 className="albumssection__detailsAlbumName">
+              {albumDetails.albumName}
+            </h2>
+            <a
+              className="albumssection__detailsFullAlbumSpotify"
+              href={albumDetails.spotifyAlbumURL}
+            >
+              Pełny album znajdziesz tutaj
+            </a>
+            <button
+              className="albumssection__detailsDeleteAlbum"
+              onClick={() => {
+                dispatch(hideAlbumDetails());
+                dispatch(deleteAlbumFromList(albumDetails.albumID));
+              }}
+            >
+              Usuń album z ulubionych
+            </button>
+          </div>
+          <div className="albumssection__tracksWrapper">
+            {tracksListCurrentAlbum}
+          </div>
+          <button
+            className="albumssection__detailsClose"
+            onClick={() => dispatch(hideAlbumDetails())}
+          >
+            X
+          </button>
+        </div>
+      ) : null}
     </section>
   );
 };
