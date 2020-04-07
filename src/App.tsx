@@ -5,6 +5,12 @@ import { WebsitePage } from "./pages/WebsitePage/WebsitePage";
 import { getOptionsToConnect } from "./authorization/config";
 import { useDispatch, useSelector } from "react-redux";
 import { setAccessTokens } from "./store/actions/AuthorizationActions";
+import {
+  dataFetching,
+  dataFetched,
+  dataError,
+} from "./store/actions/FetchDataActions";
+import { LoadingPage } from "./pages/LoadingPage/LoadingPage";
 
 export const App = () => {
   const connectOptions = getOptionsToConnect();
@@ -13,22 +19,29 @@ export const App = () => {
     (state: { authorization: { access_token: string } }) =>
       state.authorization.access_token
   );
+  const isFetching = useSelector(
+    (state: { fetchData: { featching: boolean } }) => state.fetchData.featching
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (codeToGetAccess && !accessToken) {
+      dispatch(dataFetching());
       fetch(`https://accounts.spotify.com/api/token`, fetchOptions)
         .then((res: Response) => {
           if (res.status === 200) return res.json();
           throw new Error();
         })
         .then((res: { access_token: string; refresh_token: string }) => {
-          // console.log(res);
+          dispatch(dataFetched());
           dispatch(setAccessTokens(res.access_token, res.refresh_token));
           localStorage.setItem("access_token", res.access_token);
           localStorage.setItem("refresh_token", res.refresh_token);
         })
-        .catch((err: Error) => console.log(err));
+        .catch((err: Error) => {
+          dispatch(dataError(err.message));
+          console.log(err);
+        });
     }
 
     if (!codeToGetAccess) {
@@ -39,6 +52,9 @@ export const App = () => {
   }, []);
 
   return (
-    <div className="App">{accessToken ? <WebsitePage /> : <LoginPage />}</div>
+    <div className="App">
+      {isFetching ? <LoadingPage /> : null}
+      {accessToken ? <WebsitePage /> : <LoginPage />}
+    </div>
   );
 };

@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .albumssection {
   flex-grow: 1;
   display: flex;
@@ -66,7 +68,7 @@
     transform: translate(-50%, -50%);
     width: 80vw;
     height: 60vh;
-    background-color: whitesmoke;
+    background-color: $basic-bgc-color;
     border-radius: 15px;
     box-shadow: 0 0 8px 3px black;
 
@@ -102,11 +104,11 @@
         margin: 5px auto 20px;
         padding: 5px 10px;
         width: 75%;
-        border: 2px solid darkred;
+        border: 2px solid $red-color;
         text-decoration: none;
         text-transform: uppercase;
         background-color: transparent;
-        color: darkred;
+        color: $red-color;
         cursor: pointer;
       }
     }
@@ -143,6 +145,10 @@
         cursor: pointer;
       }
 
+      .albumssection__detailsTrackButton--green {
+        border: 2px solid $green-color;
+      }
+
       .albumssection__trackWrapper {
         display: flex;
         justify-content: flex-start;
@@ -152,7 +158,7 @@
         }
 
         .albumssection__detailsTrackName--green {
-          color: #1db954;
+          color: $green-color;
         }
       }
     }

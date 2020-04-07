@@ -7,10 +7,19 @@ import { SearchButton } from "./SearchButton/SearchButton";
 import { SearchResult } from "./SearchResults/SearchResult";
 import { refreshAccessToken } from "../../authorization/config";
 import { setAccessTokens } from "../../store/actions/AuthorizationActions";
+import {
+  dataFetching,
+  dataFetched,
+  dataError,
+} from "../../store/actions/FetchDataActions";
+import { LoadingPage } from "../../pages/LoadingPage/LoadingPage";
 
 export interface SearchSectionProps {}
 
 export const SearchSection: React.SFC<SearchSectionProps> = () => {
+  const isFetching = useSelector(
+    (state: { fetchData: { featching: boolean } }) => state.fetchData.featching
+  );
   const [value, setValue] = useState("");
   const accessToken = useSelector(
     (state: { authorization: { access_token: string } }) =>
@@ -26,16 +35,22 @@ export const SearchSection: React.SFC<SearchSectionProps> = () => {
     e.preventDefault();
 
     if (value !== "") {
+      dispatch(dataFetching());
       fetch(`https://api.spotify.com/v1/search?q=${value}&type=album`, {
         headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
+          Authorization: `Bearer ${accessToken}`,
+        },
       })
         .then((res: Response) => {
           if (res.status === 200) return res.json();
+          throw new Error();
         })
-        .then(res => dispatch(searchAlbums(res.albums.items)))
-        .catch(() => {
+        .then((res) => {
+          dispatch(dataFetched());
+          dispatch(searchAlbums(res.albums.items));
+        })
+        .catch((err) => {
+          dispatch(dataError(err.message));
           refreshAccessToken(
             refresh_token,
             dispatch,
@@ -45,13 +60,15 @@ export const SearchSection: React.SFC<SearchSectionProps> = () => {
         });
     } else {
       alert("Pusty!");
+      dispatch(searchAlbums([]));
     }
   };
 
   return (
     <section className="searchsection">
+      {isFetching ? <LoadingPage /> : null}
       <h1 className="searchsection__title">Wyszukiwarka</h1>
-      <form className="searchsection__form" onSubmit={e => handleSubmit(e)}>
+      <form className="searchsection__form" onSubmit={(e) => handleSubmit(e)}>
         <SearchInput value={value} setValue={setValue} />
         <SearchButton />
       </form>

@@ -2,6 +2,12 @@ import React from "react";
 import "./Result.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { addAlbumToFavourite } from "../../../../store/actions/AddToFavouriteActions";
+import {
+  dataFetching,
+  dataFetched,
+  dataError,
+} from "../../../../store/actions/FetchDataActions";
+import { LoadingPage } from "../../../../pages/LoadingPage/LoadingPage";
 
 export interface ResultProps {
   listOfAlbums: [];
@@ -16,6 +22,9 @@ interface Album {
 }
 
 export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
+  const isFetching = useSelector(
+    (state: { fetchData: { featching: boolean } }) => state.fetchData.featching
+  );
   const albumsFilter = listOfAlbums.filter(
     (album: { album_type: string }) => album.album_type === "album"
   );
@@ -46,6 +55,7 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
           className="searchsection__addToFavourite"
           disabled={isDisabled}
           onClick={() => {
+            dispatch(dataFetching());
             fetch(`https://api.spotify.com/v1/albums/${album.id}/tracks`, {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -55,8 +65,10 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
                 if (res.status === 200) {
                   return res.json();
                 }
+                throw new Error();
               })
               .then((res) => {
+                dispatch(dataFetched());
                 dispatch(
                   addAlbumToFavourite(
                     album.images[1].url,
@@ -67,6 +79,10 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
                     album.external_urls.spotify
                   )
                 );
+              })
+              .catch((err) => {
+                dispatch(dataError(err.message));
+                console.log(err);
               });
           }}
         >
@@ -76,5 +92,10 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
     );
   });
 
-  return <>{albums}</>;
+  return (
+    <>
+      {isFetching ? <LoadingPage /> : null}
+      {albums}
+    </>
+  );
 };

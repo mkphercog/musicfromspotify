@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .loginpage__buttons {
   display: flex;
   flex-direction: column;
@@ -12,9 +14,9 @@
     font-size: 15px;
     text-decoration: none;
     text-transform: uppercase;
-    border: 2px solid #1db954;
+    border: 2px solid $green-color;
     border-radius: 30px;
-    color: #1db954;
+    color: $green-color;
     transition: 0.2s;
 
     @media (min-width: 411px) {
@@ -29,7 +31,7 @@
 
   @media (min-width: 1024px) {
     .loginpage__loginBtn:hover {
-      background-color: #1db954;
+      background-color: $green-color;
       color: black;
     }
   }
@@ -37,7 +39,7 @@
   .loginpage__registerBtn {
     font-size: 12px;
     margin-top: 10px;
-    color: rgb(156, 74, 74);
+    color: $red-color;
 
     @media (min-width: 411px) {
       font-size: 13px;

@@ -1,7 +1,10 @@
 .App {
-  min-width: 1024px;
-  min-height: 500px;
+  width: 100vw;
+  height: 100vh;
+  // min-width: 1024px;
+  // min-height: 800px;
   text-align: center;
+  // background-color: red;
 
   ::-webkit-scrollbar {
     width: 10px;

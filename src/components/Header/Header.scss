@@ -1,19 +1,19 @@
+@import "../../styles/variables.scss";
+
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 15vh;
   margin-bottom: 10px;
-  background-color: whitesmoke;
-  // border-radius: 20px;
-  // box-shadow: 0 0 5px 2px black;
+  background-color: $basic-bgc-color;
 
   .header__title {
     font-size: 40px;
     text-transform: uppercase;
 
     .header__spotify {
-      color: #1db954;
+      color: $green-color;
     }
   }
 }

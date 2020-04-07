@@ -1,10 +1,12 @@
+@import "../../styles/variables.scss";
+
 .searchsection {
   flex-basis: 25vw;
   flex-shrink: 0;
   margin-left: 10px;
   display: flex;
   flex-direction: column;
-  background-color: lightgray;
+  background-color: $basic-bgc-color;
 
   .searchsection__title {
     padding: 10px;

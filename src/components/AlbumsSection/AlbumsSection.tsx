@@ -92,12 +92,15 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
     const classes = answer
       ? "albumssection__detailsTrackName albumssection__detailsTrackName--green"
       : "albumssection__detailsTrackName";
+    const classesBtn = answer
+      ? "albumssection__detailsTrackButton albumssection__detailsTrackButton--green"
+      : "albumssection__detailsTrackButton";
     return (
       <div className="albumssection__trackWrapper" key={track.id}>
         {track.preview_url ? (
           answer ? (
             <button
-              className="albumssection__detailsTrackButton"
+              className={classesBtn}
               onClick={() => {
                 dispatch(stopMusic());
               }}
