@@ -1,0 +1,23 @@
+@import "../../../styles/variables.scss";
+
+.albumssection__trackWrapper {
+  display: flex;
+  justify-content: flex-start;
+
+  .albumssection__detailsTrackName {
+    font-size: 14px;
+    padding: 5px;
+
+    @media (min-width: 768px) and (orientation: portrait) {
+      font-size: 18px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 16px;
+    }
+  }
+
+  .albumssection__detailsTrackName--green {
+    color: $green-color;
+  }
+}

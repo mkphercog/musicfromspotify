@@ -1,5 +1,8 @@
 import React from "react";
 import "./AlbumsSection.scss";
+import { AlbumDetails } from "./AlbumDetails/AlbumDetails";
+import { Album } from "./Album/Album";
+import { Tracks } from "./Tracks/Tracks";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteAlbumFromList } from "../../store/actions/AddToFavouriteActions";
 import {
@@ -12,9 +15,7 @@ import {
   setAlbumDetails,
 } from "../../store/actions/AlbumDetailsActions";
 
-export interface AlbumsSectionProps {}
-
-interface Album {
+export interface Album {
   albumIMG: string;
   albumID: string;
   albumName: string;
@@ -23,14 +24,14 @@ interface Album {
   spotifyAlbumURL: string;
 }
 
-interface Track {
+export interface Track {
   id: string;
   track_number: number;
   name: string;
   preview_url: string;
 }
 
-export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
+export const AlbumsSection: React.SFC = () => {
   const favouriteAlbums = useSelector(
     (state: { favouriteAlbums: { favouriteAlbums: [] } }) =>
       state.favouriteAlbums.favouriteAlbums
@@ -45,42 +46,21 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
     (state: { albumDetails: { albumDetails: Album } }) =>
       state.albumDetails.albumDetails
   );
-  const dispatch = useDispatch();
-
   const albumDetailsVisible = useSelector(
     (state: { albumDetails: { isAlbumDetailsVisible: boolean } }) =>
       state.albumDetails.isAlbumDetailsVisible
   );
+  const dispatch = useDispatch();
 
   const albums = favouriteAlbums.map((album: Album) => {
     return (
-      <div key={album.albumID} className="albumssection__wrapper">
-        <img
-          src={album.albumIMG}
-          alt="Album"
-          className="albumssection__image"
-        />
-
-        <div
-          className="albumssection__hoverDiv"
-          onClick={() => {
-            dispatch(showAlbumDetails());
-            dispatch(
-              setAlbumDetails({
-                albumIMG: album.albumIMG,
-                albumID: album.albumID,
-                albumName: album.albumName,
-                artistName: album.artistName,
-                tracks: album.tracks,
-                spotifyAlbumURL: album.spotifyAlbumURL,
-              })
-            );
-          }}
-        >
-          <p className="albumssection__nameHover">{album.artistName}</p>
-          <p className="albumssection__nameHover">{album.albumName}</p>
-        </div>
-      </div>
+      <Album
+        key={album.albumID}
+        album={album}
+        dispatch={dispatch}
+        showAlbumDetails={showAlbumDetails}
+        setAlbumDetails={setAlbumDetails}
+      />
     );
   });
 
@@ -94,37 +74,16 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
       ? "albumssection__detailsTrackButton albumssection__detailsTrackButton--green"
       : "albumssection__detailsTrackButton";
     return (
-      <div className="albumssection__trackWrapper" key={track.id}>
-        {track.preview_url ? (
-          answer ? (
-            <button
-              className={classesBtn}
-              onClick={() => {
-                dispatch(stopMusic());
-              }}
-            >
-              Stop
-            </button>
-          ) : (
-            <button
-              className="albumssection__detailsTrackButton"
-              onClick={() => {
-                dispatch(setAndPlayCurrentTrack(track.preview_url));
-              }}
-            >
-              Play
-            </button>
-          )
-        ) : (
-          <button className="albumssection__detailsTrackButton" disabled>
-            Play
-          </button>
-        )}
-
-        <p className={classes}>
-          {track.track_number}. {track.name}
-        </p>
-      </div>
+      <Tracks
+        key={track.id}
+        track={track}
+        answer={answer}
+        classesBtn={classesBtn}
+        classes={classes}
+        dispatch={dispatch}
+        stopMusic={stopMusic}
+        setAndPlayCurrentTrack={setAndPlayCurrentTrack}
+      />
     );
   });
 
@@ -139,51 +98,13 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
       )}
 
       {albumDetailsVisible ? (
-        <div className="albumssection__detailsAlbum">
-          <div className="albumssection__albumInfoWrapper">
-            <img
-              className="albumssection__detailsImage"
-              src={albumDetails.albumIMG}
-              alt="Album"
-            />
-            <div className="albumssection__detailsNameWrapper">
-              <h1 className="albumssection__detailsArtistName">
-                {albumDetails.artistName}
-              </h1>
-              <h2 className="albumssection__detailsAlbumName">
-                {albumDetails.albumName}
-              </h2>
-            </div>
-            <div className="albumssection__detailsButtonsWrapper">
-              <a
-                className="albumssection__detailsFullAlbumSpotify"
-                href={albumDetails.spotifyAlbumURL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Pełny album znajdziesz tutaj
-              </a>
-              <button
-                className="albumssection__detailsDeleteAlbum"
-                onClick={() => {
-                  dispatch(hideAlbumDetails());
-                  dispatch(deleteAlbumFromList(albumDetails.albumID));
-                }}
-              >
-                Usuń album z ulubionych
-              </button>
-            </div>
-          </div>
-          <div className="albumssection__tracksWrapper">
-            {tracksListCurrentAlbum}
-          </div>
-          <button
-            className="albumssection__detailsClose"
-            onClick={() => dispatch(hideAlbumDetails())}
-          >
-            <i className="fas fa-times"></i>
-          </button>
-        </div>
+        <AlbumDetails
+          albumDetails={albumDetails}
+          tracksListCurrentAlbum={tracksListCurrentAlbum}
+          dispatch={dispatch}
+          hideAlbumDetails={hideAlbumDetails}
+          deleteAlbumFromList={deleteAlbumFromList}
+        />
       ) : null}
     </section>
   );

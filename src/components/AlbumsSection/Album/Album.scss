@@ -1,0 +1,60 @@
+@import "../../../styles/variables.scss";
+
+.albumssection__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .albumssection__image {
+    width: 75vw;
+    margin: 10px;
+    box-shadow: 0 0 5px 1px black;
+    border-radius: 15px;
+
+    @media (orientation: landscape) {
+      width: 25vw;
+    }
+
+    @media (min-width: 768px) and (orientation: portrait) {
+      width: 50vw;
+    }
+
+    @media (min-width: 1024px) {
+      width: 15vw;
+    }
+
+    @media (min-width: 1500px) {
+      width: 12vw;
+    }
+  }
+
+  .albumssection__hoverDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    transition: 0.2s;
+    text-align: center;
+
+    @media (min-width: 1024px) {
+      cursor: pointer;
+    }
+
+    .albumssection__nameHover {
+      font-size: 20px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .albumssection__hoverDiv:hover {
+      opacity: 1;
+    }
+  }
+}

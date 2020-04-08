@@ -45,7 +45,6 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
         return false;
       }
     );
-    // console.log(isDisabled);
     return (
       <div key={album.id} className="searchsection__result">
         <p className="searchsection__description">{album.name}</p>

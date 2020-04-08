@@ -52,7 +52,6 @@ export const App = () => {
 
     if (window.innerWidth >= 1024) {
       dispatch(showSearchResults());
-      console.log(window.innerWidth);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

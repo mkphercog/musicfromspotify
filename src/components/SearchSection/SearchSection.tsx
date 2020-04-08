@@ -66,7 +66,6 @@ export const SearchSection: React.SFC<SearchSectionProps> = () => {
           );
         });
     } else {
-      // alert("Pusty!");
       dispatch(searchAlbums([]));
     }
   };
@@ -74,7 +73,6 @@ export const SearchSection: React.SFC<SearchSectionProps> = () => {
   return (
     <section className="searchsection">
       {isFetching ? <LoadingPage /> : null}
-      {/* <h1 className="searchsection__title">Wyszukiwarka</h1> */}
       <form
         className="searchsection__form"
         onSubmit={(e) => {
