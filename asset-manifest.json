@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/musicfromspotify/static/css/main.4bc045ce.chunk.css",
+    "main.js": "/musicfromspotify/static/js/main.ebddfc70.chunk.js",
+    "main.js.map": "/musicfromspotify/static/js/main.ebddfc70.chunk.js.map",
+    "runtime-main.js": "/musicfromspotify/static/js/runtime-main.b8f53c11.js",
+    "runtime-main.js.map": "/musicfromspotify/static/js/runtime-main.b8f53c11.js.map",
+    "static/js/2.5b1e3a36.chunk.js": "/musicfromspotify/static/js/2.5b1e3a36.chunk.js",
+    "static/js/2.5b1e3a36.chunk.js.map": "/musicfromspotify/static/js/2.5b1e3a36.chunk.js.map",
+    "index.html": "/musicfromspotify/index.html",
+    "precache-manifest.9a39ac3f87414e8c729e017787de4cad.js": "/musicfromspotify/precache-manifest.9a39ac3f87414e8c729e017787de4cad.js",
+    "service-worker.js": "/musicfromspotify/service-worker.js",
+    "static/css/main.4bc045ce.chunk.css.map": "/musicfromspotify/static/css/main.4bc045ce.chunk.css.map",
+    "static/js/2.5b1e3a36.chunk.js.LICENSE.txt": "/musicfromspotify/static/js/2.5b1e3a36.chunk.js.LICENSE.txt",
+    "static/media/loginHeadphones.jpg": "/musicfromspotify/static/media/loginHeadphones.1df5799c.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b8f53c11.js",
+    "static/js/2.5b1e3a36.chunk.js",
+    "static/css/main.4bc045ce.chunk.css",
+    "static/js/main.ebddfc70.chunk.js"
+  ]
+}
