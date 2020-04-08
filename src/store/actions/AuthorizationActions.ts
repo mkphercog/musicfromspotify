@@ -6,5 +6,5 @@ export const setAccessTokens = (
 ) => ({
   type: SET_ACCESS_TOKENS,
   access_token: access_token,
-  refresh_token: refresh_token
+  refresh_token: refresh_token,
 });

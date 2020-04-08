@@ -1,30 +1,17 @@
 import { ADD_ALBUM_TO_LIST, DELETE_ALBUM_FROM_LIST } from "../types";
-
-interface IState {
-  favouriteAlbums: [];
-}
+import { GlobalState, GlobalAction } from "../storeInterfaces";
 
 const local = localStorage.getItem("favouriteAlbums")
   ? localStorage.getItem("favouriteAlbums")
   : "";
 
-const INITIAL_STATE: IState = {
+const INITIAL_STATE: GlobalState = {
   favouriteAlbums: local ? JSON.parse(local) : [],
 };
 
-interface IAction {
-  type: string;
-  albumIMG: string;
-  albumID: string;
-  albumName: string;
-  artistName: string;
-  tracks: [];
-  spotifyAlbumURL: string;
-}
-
 export const addFavouriteAlbumReducer = (
   state = INITIAL_STATE,
-  action: IAction
+  action: GlobalAction
 ) => {
   switch (action.type) {
     case ADD_ALBUM_TO_LIST:

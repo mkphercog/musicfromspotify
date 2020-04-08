@@ -1,18 +1,17 @@
 import { DATA_FETCHING, DATA_FETCHED, DATA_ERROR } from "../types";
+import { GlobalState, GlobalAction } from "../storeInterfaces";
 
-const INITIAL_STATE = {
+const INITIAL_STATE: GlobalState = {
   featching: false,
   featched: false,
   error: false,
   errorMessage: "",
 };
 
-interface Action {
-  type: string;
-  errorMessage: string;
-}
-
-export const dataFetchReducer = (state = INITIAL_STATE, action: Action) => {
+export const dataFetchReducer = (
+  state = INITIAL_STATE,
+  action: GlobalAction
+) => {
   switch (action.type) {
     case DATA_FETCHING:
       return {

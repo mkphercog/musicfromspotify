@@ -1,49 +1,49 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { refreshAccessToken } from "../../authorization/config";
 import "./SearchSection.scss";
+import { SearchInput } from "./SearchInput/SearchInput";
+import { SearchButton } from "./SearchButton/SearchButton";
+import { SearchResult } from "./SearchResults/SearchResult";
+import { LoadingPage } from "../../pages/LoadingPage/LoadingPage";
+import { GlobalAction } from "../../store/storeInterfaces";
+import { setAccessTokens } from "../../store/actions/AuthorizationActions";
 import {
   searchAlbums,
   showSearchResults,
 } from "../../store/actions/SearchingActions";
-import { SearchInput } from "./SearchInput/SearchInput";
-import { SearchButton } from "./SearchButton/SearchButton";
-import { SearchResult } from "./SearchResults/SearchResult";
-import { refreshAccessToken } from "../../authorization/config";
-import { setAccessTokens } from "../../store/actions/AuthorizationActions";
 import {
   dataFetching,
   dataFetched,
   dataError,
 } from "../../store/actions/FetchDataActions";
-import { LoadingPage } from "../../pages/LoadingPage/LoadingPage";
 
 export interface SearchSectionProps {}
 
 export const SearchSection: React.SFC<SearchSectionProps> = () => {
   const isFetching = useSelector(
-    (state: { fetchData: { featching: boolean } }) => state.fetchData.featching
+    (state: { fetchData: GlobalAction }) => state.fetchData.featching
   );
-  const isAlbumDetailsVisible = useSelector(
-    (state: { searching: { isAlbumDetailsVisible: boolean } }) =>
-      state.searching.isAlbumDetailsVisible
+  const isSearchResultsVisible = useSelector(
+    (state: { searching: GlobalAction }) =>
+      state.searching.isSearchResultsVisible
   );
-  const [value, setValue] = useState("");
   const accessToken = useSelector(
-    (state: { authorization: { access_token: string } }) =>
-      state.authorization.access_token
+    (state: { authorization: GlobalAction }) => state.authorization.access_token
   );
-  const dispatch = useDispatch();
   const refresh_token = useSelector(
-    (state: { authorization: { refresh_token: string } }) =>
+    (state: { authorization: GlobalAction }) =>
       state.authorization.refresh_token
   );
+  const [inputValue, setInputValue] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (value !== "") {
+    if (inputValue !== "") {
       dispatch(dataFetching());
-      fetch(`https://api.spotify.com/v1/search?q=${value}&type=album`, {
+      fetch(`https://api.spotify.com/v1/search?q=${inputValue}&type=album`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -82,8 +82,8 @@ export const SearchSection: React.SFC<SearchSectionProps> = () => {
       >
         <div className="relative">
           <SearchInput
-            value={value}
-            setValue={setValue}
+            value={inputValue}
+            setValue={setInputValue}
             showResults={showSearchResults}
             dispatch={dispatch}
           />
@@ -91,7 +91,7 @@ export const SearchSection: React.SFC<SearchSectionProps> = () => {
         </div>
       </form>
       <div className="searchsection__resultsPosition">
-        {isAlbumDetailsVisible ? <SearchResult /> : null}
+        {isSearchResultsVisible ? <SearchResult /> : null}
       </div>
     </section>
   );

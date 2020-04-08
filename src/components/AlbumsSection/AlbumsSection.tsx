@@ -14,15 +14,10 @@ import {
   showAlbumDetails,
   setAlbumDetails,
 } from "../../store/actions/AlbumDetailsActions";
-
-export interface Album {
-  albumIMG: string;
-  albumID: string;
-  albumName: string;
-  artistName: string;
-  tracks: any[];
-  spotifyAlbumURL: string;
-}
+import {
+  GlobalAction,
+  AlbumDetails as AlbumDetailsInterface,
+} from "../../store/storeInterfaces";
 
 export interface Track {
   id: string;
@@ -33,26 +28,25 @@ export interface Track {
 
 export const AlbumsSection: React.SFC = () => {
   const favouriteAlbums = useSelector(
-    (state: { favouriteAlbums: { favouriteAlbums: [] } }) =>
+    (state: { favouriteAlbums: GlobalAction }) =>
       state.favouriteAlbums.favouriteAlbums
   );
   const currentTrack = useSelector(
-    (state: { player: { trackURL: string } }) => state.player.trackURL
+    (state: { player: GlobalAction }) => state.player.trackURL
   );
   const isPlaying = useSelector(
-    (state: { player: { isPlaying: boolean } }) => state.player.isPlaying
+    (state: { player: GlobalAction }) => state.player.isPlaying
   );
   const albumDetails = useSelector(
-    (state: { albumDetails: { albumDetails: Album } }) =>
-      state.albumDetails.albumDetails
+    (state: { albumDetails: GlobalAction }) => state.albumDetails.albumDetails
   );
   const albumDetailsVisible = useSelector(
-    (state: { albumDetails: { isAlbumDetailsVisible: boolean } }) =>
+    (state: { albumDetails: GlobalAction }) =>
       state.albumDetails.isAlbumDetailsVisible
   );
   const dispatch = useDispatch();
 
-  const albums = favouriteAlbums.map((album: Album) => {
+  const albums = favouriteAlbums.map((album: AlbumDetailsInterface) => {
     return (
       <Album
         key={album.albumID}

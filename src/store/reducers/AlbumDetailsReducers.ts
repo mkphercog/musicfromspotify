@@ -3,8 +3,9 @@ import {
   HIDE_ALBUM_DETAILS,
   SET_ALBUM_DETAILS,
 } from "../types";
+import { GlobalState, GlobalAction } from "../storeInterfaces";
 
-const INITIAL_STATE = {
+const INITIAL_STATE: GlobalState = {
   isAlbumDetailsVisible: false,
   albumDetails: {
     albumIMG: "",
@@ -16,20 +17,10 @@ const INITIAL_STATE = {
   },
 };
 
-interface Action {
-  type: string;
-  isAlbumDetailsVisible: boolean;
-  albumDetails: {
-    albumIMG: string;
-    albumID: string;
-    albumName: string;
-    artistName: string;
-    tracks: any[];
-    spotifyAlbumURL: string;
-  };
-}
-
-export const albumDetailsReducer = (state = INITIAL_STATE, action: Action) => {
+export const albumDetailsReducer = (
+  state = INITIAL_STATE,
+  action: GlobalAction
+) => {
   switch (action.type) {
     case SHOW_ALBUM_DETAILS:
       return {

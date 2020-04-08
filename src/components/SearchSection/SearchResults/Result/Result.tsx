@@ -8,13 +8,14 @@ import {
   dataError,
 } from "../../../../store/actions/FetchDataActions";
 import { LoadingPage } from "../../../../pages/LoadingPage/LoadingPage";
+import { GlobalAction } from "../../../../store/storeInterfaces";
 
 export interface ResultProps {
   listOfAlbums: [];
 }
 
 interface Album {
-  artists: [{ name: string }];
+  artists: { name: string }[];
   name: string;
   id: string;
   images: { url: string }[];
@@ -23,19 +24,18 @@ interface Album {
 
 export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
   const isFetching = useSelector(
-    (state: { fetchData: { featching: boolean } }) => state.fetchData.featching
-  );
-  const albumsFilter = listOfAlbums.filter(
-    (album: { album_type: string }) => album.album_type === "album"
+    (state: { fetchData: GlobalAction }) => state.fetchData.featching
   );
   const accessToken = useSelector(
-    (state: { authorization: { access_token: string } }) =>
-      state.authorization.access_token
+    (state: { authorization: GlobalAction }) => state.authorization.access_token
   );
   const dispatch = useDispatch();
   const favouriteAlbums = useSelector(
-    (state: { favouriteAlbums: { favouriteAlbums: [] } }) =>
+    (state: { favouriteAlbums: GlobalAction }) =>
       state.favouriteAlbums.favouriteAlbums
+  );
+  const albumsFilter = listOfAlbums.filter(
+    (album: { album_type: string }) => album.album_type === "album"
   );
 
   const albums = albumsFilter.map((album: Album) => {
@@ -71,17 +71,16 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
                 throw new Error();
               })
               .then((res) => {
+                const albumObj = {
+                  albumIMG: album.images[1].url,
+                  albumID: album.id,
+                  albumName: album.name,
+                  artistName: album.artists[0].name,
+                  tracks: res.items,
+                  spotifyAlbumURL: album.external_urls.spotify,
+                };
                 dispatch(dataFetched());
-                dispatch(
-                  addAlbumToFavourite(
-                    album.images[1].url,
-                    album.id,
-                    album.name,
-                    album.artists[0].name,
-                    res.items,
-                    album.external_urls.spotify
-                  )
-                );
+                dispatch(addAlbumToFavourite(albumObj));
               })
               .catch((err) => {
                 dispatch(dataError(err.message));

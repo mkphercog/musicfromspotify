@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import "./SearchResult.scss";
 import { Result } from "./Result/Result";
 import { hideSearchResults } from "../../../store/actions/SearchingActions";
+import { GlobalAction } from "../../../store/storeInterfaces";
 
 export interface SearchResultProps {}
 
 export const SearchResult: React.SFC<SearchResultProps> = () => {
   const listOfAlbums = useSelector(
-    (state: { searching: { listOfAlbums: [] } }) => state.searching.listOfAlbums
+    (state: { searching: GlobalAction }) => state.searching.listOfAlbums
   );
   const dispatch = useDispatch();
 

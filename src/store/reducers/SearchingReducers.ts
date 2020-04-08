@@ -3,26 +3,27 @@ import {
   SHOW_SEARCH_RESULTS,
   HIDE_SEARCH_RESULTS,
 } from "../types";
+import { GlobalState, GlobalAction } from "../storeInterfaces";
 
-const INITIAL_STATE = {
+const INITIAL_STATE: GlobalState = {
   listOfAlbums: [],
-  isAlbumDetailsVisible: false,
+  isSearchResultsVisible: false,
 };
 
 export const searchingReducer = (
   state = INITIAL_STATE,
-  action: { type: string; listOfAlbums: []; isSearchResultsVisible: boolean }
+  action: GlobalAction
 ) => {
   switch (action.type) {
     case SHOW_SEARCH_RESULTS:
       return {
         ...state,
-        isAlbumDetailsVisible: action.isSearchResultsVisible,
+        isSearchResultsVisible: action.isSearchResultsVisible,
       };
     case HIDE_SEARCH_RESULTS:
       return {
         ...state,
-        isAlbumDetailsVisible: action.isSearchResultsVisible,
+        isSearchResultsVisible: action.isSearchResultsVisible,
       };
     case SEARCH_ALBUMS:
       return {

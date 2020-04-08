@@ -1,27 +1,29 @@
 import { SET_ACCESS_TOKENS } from "../types";
 import { getCodeFromUrl } from "../../authorization/config";
+import { GlobalState, GlobalAction } from "../storeInterfaces";
 
-const INITIAL_STATE = {
-  access_token: getCodeFromUrl() ? localStorage.getItem("access_token") : "",
-  refresh_token: localStorage.getItem("refresh_token")
-    ? localStorage.getItem("refresh_token")
-    : ""
+const accessLocal = getCodeFromUrl()
+  ? String(localStorage.getItem("access_token"))
+  : "";
+const refreshLocal = localStorage.getItem("refresh_token")
+  ? String(localStorage.getItem("refresh_token"))
+  : "";
+
+const INITIAL_STATE: GlobalState = {
+  access_token: accessLocal,
+  refresh_token: refreshLocal,
 };
 
 export const authorizationReducers = (
   state = INITIAL_STATE,
-  action: {
-    type: typeof SET_ACCESS_TOKENS;
-    access_token: string;
-    refresh_token: string;
-  }
+  action: GlobalAction
 ) => {
   switch (action.type) {
     case SET_ACCESS_TOKENS:
       return {
         ...state,
         access_token: action.access_token,
-        refresh_token: action.refresh_token
+        refresh_token: action.refresh_token,
       };
     default:
       return state;

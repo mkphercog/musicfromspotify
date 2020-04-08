@@ -1,9 +1,9 @@
 import React from "react";
 import "./Album.scss";
-import { Album as AlbumInterface } from "../AlbumsSection";
+import { AlbumDetails } from "../../../store/storeInterfaces";
 
 export interface AlbumProps {
-  album: AlbumInterface;
+  album: AlbumDetails;
   dispatch: Function;
   showAlbumDetails: Function;
   setAlbumDetails: Function;

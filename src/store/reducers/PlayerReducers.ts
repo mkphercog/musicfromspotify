@@ -1,17 +1,17 @@
 import { SET_AND_PLAY_CURRENT_TRACK, STOP_PLAYING_TRACK } from "../types";
+import { GlobalState, GlobalAction } from "../storeInterfaces";
+
 const player = new Audio();
 
-const INITIAL_STATE = {
+const INITIAL_STATE: GlobalState = {
   trackURL: "",
   isPlaying: false,
 };
 
-interface Album {
-  type: string;
-  trackURL: string;
-}
-
-export const currentTrackReducer = (state = INITIAL_STATE, action: Album) => {
+export const currentTrackReducer = (
+  state = INITIAL_STATE,
+  action: GlobalAction
+) => {
   switch (action.type) {
     case SET_AND_PLAY_CURRENT_TRACK:
       player.src = action.trackURL;
