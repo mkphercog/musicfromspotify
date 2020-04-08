@@ -1,8 +1,21 @@
+@import "../../../styles/variables.scss";
+
 .searchsection__searchbtn {
-  width: 50%;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translate(-50%, -50%);
   padding: 5px;
-  margin: 5px auto;
-  background-color: white;
-  border: 2px solid black;
-  font-size: 18px;
+  font-size: 21px;
+  border: none;
+  background-color: transparent;
+  color: $green-color;
+
+  @media (min-width: 768px) and (orientation: portrait) {
+    font-size: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    cursor: pointer;
+  }
 }

@@ -9,8 +9,16 @@
   background-color: $basic-bgc-color;
 
   .header__title {
-    font-size: 40px;
+    font-size: 25px;
     text-transform: uppercase;
+
+    @media (min-width: 411px) {
+      font-size: 30px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 45px;
+    }
 
     .header__spotify {
       color: $green-color;

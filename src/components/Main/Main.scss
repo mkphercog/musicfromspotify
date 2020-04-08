@@ -1,6 +1,11 @@
 .main {
   flex-grow: 1;
-  height: 75vh;
+
   display: flex;
-  // background-color: rgb(165, 161, 161);
+  flex-direction: column;
+  height: 75vh;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
 }

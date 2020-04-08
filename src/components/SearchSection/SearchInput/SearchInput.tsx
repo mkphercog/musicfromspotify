@@ -4,16 +4,24 @@ import "./SearchInput.scss";
 export interface SearchInputProps {
   value: string;
   setValue: Function;
+  showResults: Function;
+  dispatch: Function;
 }
 
 export const SearchInput: React.SFC<SearchInputProps> = ({
   value,
-  setValue
+  setValue,
+  showResults,
+  dispatch,
 }) => (
   <input
     className="searchsection__input"
+    placeholder="Wyszukaj..."
     type="text"
     value={value}
-    onChange={e => setValue(e.target.value)}
+    onClick={() => {
+      dispatch(showResults());
+    }}
+    onChange={(e) => setValue(e.target.value)}
   />
 );

@@ -51,9 +51,6 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
     (state: { albumDetails: { isAlbumDetailsVisible: boolean } }) =>
       state.albumDetails.isAlbumDetailsVisible
   );
-  // if (isPlaying) {
-  //   setTimeout(() => dispatch(stopMusic()), 29000);
-  // }
 
   const albums = favouriteAlbums.map((album: Album) => {
     return (
@@ -67,20 +64,21 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
         <div
           className="albumssection__hoverDiv"
           onClick={() => {
-            const obj = {
-              albumIMG: album.albumIMG,
-              albumID: album.albumID,
-              albumName: album.albumName,
-              artistName: album.artistName,
-              tracks: album.tracks,
-              spotifyAlbumURL: album.spotifyAlbumURL,
-            };
             dispatch(showAlbumDetails());
-            dispatch(setAlbumDetails(obj));
+            dispatch(
+              setAlbumDetails({
+                albumIMG: album.albumIMG,
+                albumID: album.albumID,
+                albumName: album.albumName,
+                artistName: album.artistName,
+                tracks: album.tracks,
+                spotifyAlbumURL: album.spotifyAlbumURL,
+              })
+            );
           }}
         >
-          <h1>{album.artistName}</h1>
-          <h2>{album.albumName}</h2>
+          <p className="albumssection__nameHover">{album.artistName}</p>
+          <p className="albumssection__nameHover">{album.albumName}</p>
         </div>
       </div>
     );
@@ -117,7 +115,11 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
               Play
             </button>
           )
-        ) : null}
+        ) : (
+          <button className="albumssection__detailsTrackButton" disabled>
+            Play
+          </button>
+        )}
 
         <p className={classes}>
           {track.track_number}. {track.name}
@@ -131,7 +133,9 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
       {albums.length ? (
         albums.reverse()
       ) : (
-        <div className="albumssection__wrapper">Brak danych</div>
+        <div className="albumssection__noResults">
+          <p>Brak danych</p>
+        </div>
       )}
 
       {albumDetailsVisible ? (
@@ -142,27 +146,33 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
               src={albumDetails.albumIMG}
               alt="Album"
             />
-            <h1 className="albumssection__detailsArtistName">
-              {albumDetails.artistName}
-            </h1>
-            <h2 className="albumssection__detailsAlbumName">
-              {albumDetails.albumName}
-            </h2>
-            <a
-              className="albumssection__detailsFullAlbumSpotify"
-              href={albumDetails.spotifyAlbumURL}
-            >
-              Pełny album znajdziesz tutaj
-            </a>
-            <button
-              className="albumssection__detailsDeleteAlbum"
-              onClick={() => {
-                dispatch(hideAlbumDetails());
-                dispatch(deleteAlbumFromList(albumDetails.albumID));
-              }}
-            >
-              Usuń album z ulubionych
-            </button>
+            <div className="albumssection__detailsNameWrapper">
+              <h1 className="albumssection__detailsArtistName">
+                {albumDetails.artistName}
+              </h1>
+              <h2 className="albumssection__detailsAlbumName">
+                {albumDetails.albumName}
+              </h2>
+            </div>
+            <div className="albumssection__detailsButtonsWrapper">
+              <a
+                className="albumssection__detailsFullAlbumSpotify"
+                href={albumDetails.spotifyAlbumURL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Pełny album znajdziesz tutaj
+              </a>
+              <button
+                className="albumssection__detailsDeleteAlbum"
+                onClick={() => {
+                  dispatch(hideAlbumDetails());
+                  dispatch(deleteAlbumFromList(albumDetails.albumID));
+                }}
+              >
+                Usuń album z ulubionych
+              </button>
+            </div>
           </div>
           <div className="albumssection__tracksWrapper">
             {tracksListCurrentAlbum}
@@ -171,7 +181,7 @@ export const AlbumsSection: React.SFC<AlbumsSectionProps> = () => {
             className="albumssection__detailsClose"
             onClick={() => dispatch(hideAlbumDetails())}
           >
-            X
+            <i className="fas fa-times"></i>
           </button>
         </div>
       ) : null}

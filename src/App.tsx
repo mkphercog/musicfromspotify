@@ -11,6 +11,7 @@ import {
   dataError,
 } from "./store/actions/FetchDataActions";
 import { LoadingPage } from "./pages/LoadingPage/LoadingPage";
+import { showSearchResults } from "./store/actions/SearchingActions";
 
 export const App = () => {
   const connectOptions = getOptionsToConnect();
@@ -47,6 +48,11 @@ export const App = () => {
     if (!codeToGetAccess) {
       localStorage.setItem("access_token", "");
       localStorage.setItem("refresh_token", "");
+    }
+
+    if (window.innerWidth >= 1024) {
+      dispatch(showSearchResults());
+      console.log(window.innerWidth);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

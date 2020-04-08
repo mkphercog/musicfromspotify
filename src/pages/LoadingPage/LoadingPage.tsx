@@ -6,7 +6,7 @@ export interface LoadingPageProps {}
 export const LoadingPage: React.SFC<LoadingPageProps> = () => {
   return (
     <div className="loadingPage">
-      <p className="loadingPage__name">Wczytuje dane</p>
+      <p className="loadingPage__name">Wczytuje dane...</p>
     </div>
   );
 };

@@ -49,7 +49,11 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
     return (
       <div key={album.id} className="searchsection__result">
         <p className="searchsection__description">{album.name}</p>
-        <img src={album.images[2].url} alt="Album" />
+        <img
+          className="searchsection__albumImage"
+          src={album.images[2].url}
+          alt="Album"
+        />
         <p className="searchsection__description">{album.artists[0].name}</p>
         <button
           className="searchsection__addToFavourite"
@@ -86,7 +90,7 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
               });
           }}
         >
-          Dodaj do ulubionych
+          {isDisabled ? "Dodano do ulubionych" : "Dodaj do ulubionych"}
         </button>
       </div>
     );

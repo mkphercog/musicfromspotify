@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./SearchSection.scss";
-import { searchAlbums } from "../../store/actions/SearchingActions";
+import {
+  searchAlbums,
+  showSearchResults,
+} from "../../store/actions/SearchingActions";
 import { SearchInput } from "./SearchInput/SearchInput";
 import { SearchButton } from "./SearchButton/SearchButton";
 import { SearchResult } from "./SearchResults/SearchResult";
@@ -19,6 +22,10 @@ export interface SearchSectionProps {}
 export const SearchSection: React.SFC<SearchSectionProps> = () => {
   const isFetching = useSelector(
     (state: { fetchData: { featching: boolean } }) => state.fetchData.featching
+  );
+  const isAlbumDetailsVisible = useSelector(
+    (state: { searching: { isAlbumDetailsVisible: boolean } }) =>
+      state.searching.isAlbumDetailsVisible
   );
   const [value, setValue] = useState("");
   const accessToken = useSelector(
@@ -59,7 +66,7 @@ export const SearchSection: React.SFC<SearchSectionProps> = () => {
           );
         });
     } else {
-      alert("Pusty!");
+      // alert("Pusty!");
       dispatch(searchAlbums([]));
     }
   };
@@ -67,12 +74,27 @@ export const SearchSection: React.SFC<SearchSectionProps> = () => {
   return (
     <section className="searchsection">
       {isFetching ? <LoadingPage /> : null}
-      <h1 className="searchsection__title">Wyszukiwarka</h1>
-      <form className="searchsection__form" onSubmit={(e) => handleSubmit(e)}>
-        <SearchInput value={value} setValue={setValue} />
-        <SearchButton />
+      {/* <h1 className="searchsection__title">Wyszukiwarka</h1> */}
+      <form
+        className="searchsection__form"
+        onSubmit={(e) => {
+          dispatch(showSearchResults());
+          handleSubmit(e);
+        }}
+      >
+        <div className="relative">
+          <SearchInput
+            value={value}
+            setValue={setValue}
+            showResults={showSearchResults}
+            dispatch={dispatch}
+          />
+          <SearchButton />
+        </div>
       </form>
-      <SearchResult />
+      <div className="searchsection__resultsPosition">
+        {isAlbumDetailsVisible ? <SearchResult /> : null}
+      </div>
     </section>
   );
 };
