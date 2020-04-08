@@ -2,10 +2,11 @@
 
 .albumssection__trackWrapper {
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
+  margin: 5px;
 
   .albumssection__detailsTrackName {
-    font-size: 14px;
+    font-size: 15px;
     padding: 5px;
 
     @media (min-width: 768px) and (orientation: portrait) {
@@ -16,8 +17,38 @@
       font-size: 16px;
     }
   }
-
   .albumssection__detailsTrackName--green {
     color: $green-color;
+  }
+
+  .albumssection__detailsTrackButton {
+    padding: 7px 12px;
+    margin: 0 5px;
+    background-color: transparent;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 1px solid darkgray;
+
+    @media (min-width: 768px) and (orientation: portrait) {
+      font-size: 18px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .albumssection__detailsTrackButton:hover {
+      background-color: gray;
+      color: white;
+    }
+  }
+
+  .albumssection__detailsTrackButton--green {
+    border: 1px solid $green-color;
   }
 }

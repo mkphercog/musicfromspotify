@@ -6,6 +6,8 @@
   margin: 10px;
 
   .searchsection__albumImage {
+    width: 100px;
+
     @media (min-width: 768px) and (orientation: portrait) {
       width: 120px;
     }
@@ -13,6 +15,8 @@
 
   .searchsection__description {
     padding: 5px;
+    font-size: 19px;
+
     @media (min-width: 768px) and (orientation: portrait) {
       font-size: 22px;
     }
