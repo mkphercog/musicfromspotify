@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/musicfromspotify/static/css/main.7fd0eaac.chunk.css",
-    "main.js": "/musicfromspotify/static/js/main.d7aa4427.chunk.js",
-    "main.js.map": "/musicfromspotify/static/js/main.d7aa4427.chunk.js.map",
+    "main.js": "/musicfromspotify/static/js/main.ebddfc70.chunk.js",
+    "main.js.map": "/musicfromspotify/static/js/main.ebddfc70.chunk.js.map",
     "runtime-main.js": "/musicfromspotify/static/js/runtime-main.b8f53c11.js",
     "runtime-main.js.map": "/musicfromspotify/static/js/runtime-main.b8f53c11.js.map",
     "static/js/2.5b1e3a36.chunk.js": "/musicfromspotify/static/js/2.5b1e3a36.chunk.js",
     "static/js/2.5b1e3a36.chunk.js.map": "/musicfromspotify/static/js/2.5b1e3a36.chunk.js.map",
     "index.html": "/musicfromspotify/index.html",
-    "precache-manifest.a08e48429c3c58ff625ee540843edb85.js": "/musicfromspotify/precache-manifest.a08e48429c3c58ff625ee540843edb85.js",
+    "precache-manifest.440aba69fb683c257d04c78fc034de2b.js": "/musicfromspotify/precache-manifest.440aba69fb683c257d04c78fc034de2b.js",
     "service-worker.js": "/musicfromspotify/service-worker.js",
     "static/css/main.7fd0eaac.chunk.css.map": "/musicfromspotify/static/css/main.7fd0eaac.chunk.css.map",
     "static/js/2.5b1e3a36.chunk.js.LICENSE.txt": "/musicfromspotify/static/js/2.5b1e3a36.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.b8f53c11.js",
     "static/js/2.5b1e3a36.chunk.js",
     "static/css/main.7fd0eaac.chunk.css",
-    "static/js/main.d7aa4427.chunk.js"
+    "static/js/main.ebddfc70.chunk.js"
   ]
 }
