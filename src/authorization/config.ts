@@ -49,8 +49,7 @@ export const getOptionsToConnect = () => {
 export const refreshAccessToken = (
   refresh_token: string,
   dispatch: Function,
-  setAccessTokens: Function,
-  searchAlbums: Function
+  setAccessTokens: Function
 ) => {
   const urlencoded = new URLSearchParams();
   urlencoded.append("grant_type", "refresh_token");
@@ -75,10 +74,10 @@ export const refreshAccessToken = (
       if (res.status === 200) {
         return res.json();
       }
+      throw new Error();
     })
     .then((res) => {
       dispatch(setAccessTokens(res.access_token, refresh_token));
-      dispatch(searchAlbums([]));
-    });
-  return;
+    })
+    .catch((err) => console.log(err));
 };

@@ -21,6 +21,7 @@ export const dataFetchReducer = (
         error: false,
         errorMessage: "",
       };
+
     case DATA_FETCHED:
       return {
         ...state,
@@ -29,6 +30,7 @@ export const dataFetchReducer = (
         error: false,
         errorMessage: "",
       };
+
     case DATA_ERROR:
       return {
         ...state,
@@ -37,6 +39,7 @@ export const dataFetchReducer = (
         error: true,
         errorMessage: action.errorMessage,
       };
+
     default:
       return state;
   }

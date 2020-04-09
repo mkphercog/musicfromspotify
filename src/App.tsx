@@ -1,27 +1,30 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.scss";
+
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { WebsitePage } from "./pages/WebsitePage/WebsitePage";
+import { LoadingPage } from "./pages/LoadingPage/LoadingPage";
+
 import { getOptionsToConnect } from "./authorization/config";
-import { useDispatch, useSelector } from "react-redux";
+import { GlobalAction } from "./store/storeInterfaces";
+
+import { showSearchResults } from "./store/actions/SearchingActions";
 import { setAccessTokens } from "./store/actions/AuthorizationActions";
 import {
   dataFetching,
   dataFetched,
   dataError,
 } from "./store/actions/FetchDataActions";
-import { LoadingPage } from "./pages/LoadingPage/LoadingPage";
-import { showSearchResults } from "./store/actions/SearchingActions";
 
 export const App = () => {
   const connectOptions = getOptionsToConnect();
   const { codeToGetAccess, fetchOptions } = connectOptions;
   const accessToken = useSelector(
-    (state: { authorization: { access_token: string } }) =>
-      state.authorization.access_token
+    (state: { authorization: GlobalAction }) => state.authorization.access_token
   );
   const isFetching = useSelector(
-    (state: { fetchData: { featching: boolean } }) => state.fetchData.featching
+    (state: { fetchData: GlobalAction }) => state.fetchData.featching
   );
   const dispatch = useDispatch();
 
@@ -33,11 +36,9 @@ export const App = () => {
           if (res.status === 200) return res.json();
           throw new Error();
         })
-        .then((res: { access_token: string; refresh_token: string }) => {
+        .then((res: GlobalAction) => {
           dispatch(dataFetched());
           dispatch(setAccessTokens(res.access_token, res.refresh_token));
-          localStorage.setItem("access_token", res.access_token);
-          localStorage.setItem("refresh_token", res.refresh_token);
         })
         .catch((err: Error) => {
           dispatch(dataError(err.message));

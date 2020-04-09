@@ -31,6 +31,7 @@ export const addFavouriteAlbumReducer = (
         ...state,
         favouriteAlbums: [...state.favouriteAlbums, newAlbum],
       };
+
     case DELETE_ALBUM_FROM_LIST:
       const newListWithoutAlbum = state.favouriteAlbums.filter(
         (album: { albumID: string }) => album.albumID !== action.albumID
@@ -43,6 +44,7 @@ export const addFavouriteAlbumReducer = (
         ...state,
         favouriteAlbums: newListWithoutAlbum,
       };
+
     default:
       return state;
   }

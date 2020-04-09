@@ -4,9 +4,7 @@ import { Header } from "../../components/Header/Header";
 import { Main } from "../../components/Main/Main";
 import { Footer } from "../../components/Footer/Footer";
 
-export interface WebsitePageProps {}
-
-export const WebsitePage: React.SFC<WebsitePageProps> = () => (
+export const WebsitePage: React.SFC = () => (
   <div className="websitepage">
     <Header />
     <Main />

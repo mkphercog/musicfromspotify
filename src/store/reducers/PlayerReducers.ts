@@ -21,6 +21,7 @@ export const currentTrackReducer = (
         trackURL: action.trackURL,
         isPlaying: true,
       };
+
     case STOP_PLAYING_TRACK:
       player.pause();
       return {
@@ -28,6 +29,7 @@ export const currentTrackReducer = (
         trackURL: "",
         isPlaying: false,
       };
+
     default:
       return state;
   }

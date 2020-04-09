@@ -56,3 +56,10 @@ export interface AlbumDetails {
   tracks: [];
   spotifyAlbumURL: string;
 }
+
+export interface Track {
+  id: string;
+  track_number: number;
+  name: string;
+  preview_url: string;
+}

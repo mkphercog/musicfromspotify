@@ -20,11 +20,14 @@ export const authorizationReducers = (
 ) => {
   switch (action.type) {
     case SET_ACCESS_TOKENS:
+      localStorage.setItem("access_token", action.access_token);
+      localStorage.setItem("refresh_token", action.refresh_token);
       return {
         ...state,
         access_token: action.access_token,
         refresh_token: action.refresh_token,
       };
+
     default:
       return state;
   }

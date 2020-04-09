@@ -1,33 +1,39 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import "./SearchResult.scss";
 import { Result } from "./Result/Result";
-import { hideSearchResults } from "../../../store/actions/SearchingActions";
-import { GlobalAction } from "../../../store/storeInterfaces";
 
-export interface SearchResultProps {}
+interface SearchResultProps {
+  listOfAlbums: [];
+  hideSearchResults: Function;
+  dispatch: Function;
+  setInputValue: Function;
+  searchAlbums: Function;
+}
 
-export const SearchResult: React.SFC<SearchResultProps> = () => {
-  const listOfAlbums = useSelector(
-    (state: { searching: GlobalAction }) => state.searching.listOfAlbums
-  );
-  const dispatch = useDispatch();
-
-  return (
-    <div className="searchsection___wrapper">
-      <div className="searchsection__results">
-        {listOfAlbums.length ? (
-          <Result listOfAlbums={listOfAlbums} />
-        ) : (
-          <p className="searchsection__noResults">Brak danych</p>
-        )}
-      </div>
-      <button
-        className="searchsection__close"
-        onClick={() => dispatch(hideSearchResults())}
-      >
-        Zamknij wyszukiwarkę
-      </button>
+export const SearchResult: React.SFC<SearchResultProps> = ({
+  listOfAlbums,
+  hideSearchResults,
+  dispatch,
+  setInputValue,
+  searchAlbums,
+}) => (
+  <div className="searchsection___wrapper">
+    <div className="searchsection__results">
+      {listOfAlbums.length ? (
+        <Result listOfAlbums={listOfAlbums} />
+      ) : (
+        <p className="searchsection__noResults">Brak wyników wyszukiwania</p>
+      )}
     </div>
-  );
-};
+    <button
+      className="searchsection__close"
+      onClick={() => {
+        dispatch(hideSearchResults());
+        setInputValue("");
+        dispatch(searchAlbums([]));
+      }}
+    >
+      Zamknij wyszukiwarkę
+    </button>
+  </div>
+);

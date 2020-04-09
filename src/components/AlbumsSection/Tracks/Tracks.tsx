@@ -1,12 +1,12 @@
 import React from "react";
 import "./Tracks.scss";
-import { Track } from "../AlbumsSection";
+import { Track } from "../../../store/storeInterfaces";
 
 export interface TracksProps {
   track: Track;
-  answer: boolean;
-  classesBtn: string;
-  classes: string;
+  isTrackPlaying: boolean;
+  stopBtnClasses: string;
+  trackClasses: string;
   dispatch: Function;
   stopMusic: Function;
   setAndPlayCurrentTrack: Function;
@@ -14,18 +14,18 @@ export interface TracksProps {
 
 export const Tracks: React.SFC<TracksProps> = ({
   track,
-  answer,
-  classesBtn,
-  classes,
+  isTrackPlaying,
+  stopBtnClasses,
+  trackClasses,
   dispatch,
   stopMusic,
   setAndPlayCurrentTrack,
 }) => (
   <div className="albumssection__trackWrapper">
     {track.preview_url ? (
-      answer ? (
+      isTrackPlaying ? (
         <button
-          className={classesBtn}
+          className={stopBtnClasses}
           onClick={() => {
             dispatch(stopMusic());
           }}
@@ -48,7 +48,7 @@ export const Tracks: React.SFC<TracksProps> = ({
       </button>
     )}
 
-    <p className={classes}>
+    <p className={trackClasses}>
       {track.track_number}. {track.name}
     </p>
   </div>

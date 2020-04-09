@@ -2,26 +2,28 @@ import React from "react";
 import "./SearchInput.scss";
 
 export interface SearchInputProps {
-  value: string;
-  setValue: Function;
+  inputValue: string;
+  setInputValue: Function;
+  isSearchResultsVisible: boolean;
   showResults: Function;
   dispatch: Function;
 }
 
 export const SearchInput: React.SFC<SearchInputProps> = ({
-  value,
-  setValue,
+  inputValue,
+  setInputValue,
+  isSearchResultsVisible,
   showResults,
   dispatch,
 }) => (
   <input
     className="searchsection__input"
-    placeholder="Wyszukaj..."
+    placeholder="Wyszukaj album / artystę..."
     type="text"
-    value={value}
+    value={inputValue}
     onClick={() => {
-      dispatch(showResults());
+      if (!isSearchResultsVisible) dispatch(showResults());
     }}
-    onChange={(e) => setValue(e.target.value)}
+    onChange={(e) => setInputValue(e.target.value)}
   />
 );

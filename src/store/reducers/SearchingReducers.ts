@@ -20,16 +20,19 @@ export const searchingReducer = (
         ...state,
         isSearchResultsVisible: action.isSearchResultsVisible,
       };
+
     case HIDE_SEARCH_RESULTS:
       return {
         ...state,
         isSearchResultsVisible: action.isSearchResultsVisible,
       };
+
     case SEARCH_ALBUMS:
       return {
         ...state,
         listOfAlbums: action.listOfAlbums,
       };
+
     default:
       return state;
   }

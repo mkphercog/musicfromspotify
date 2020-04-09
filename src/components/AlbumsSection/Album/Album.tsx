@@ -17,7 +17,6 @@ export const Album: React.SFC<AlbumProps> = ({
 }) => (
   <div className="albumssection__wrapper">
     <img src={album.albumIMG} alt="Album" className="albumssection__image" />
-
     <div
       className="albumssection__hoverDiv"
       onClick={() => {

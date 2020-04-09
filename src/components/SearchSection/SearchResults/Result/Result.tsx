@@ -1,16 +1,21 @@
 import React from "react";
-import "./Result.scss";
 import { useSelector, useDispatch } from "react-redux";
+import "./Result.scss";
+
+import { refreshAccessToken } from "../../../../authorization/config";
+import { GlobalAction } from "../../../../store/storeInterfaces";
+
 import { addAlbumToFavourite } from "../../../../store/actions/AddToFavouriteActions";
+import { setAccessTokens } from "../../../../store/actions/AuthorizationActions";
 import {
   dataFetching,
   dataFetched,
   dataError,
 } from "../../../../store/actions/FetchDataActions";
-import { LoadingPage } from "../../../../pages/LoadingPage/LoadingPage";
-import { GlobalAction } from "../../../../store/storeInterfaces";
 
-export interface ResultProps {
+import { LoadingPage } from "../../../../pages/LoadingPage/LoadingPage";
+
+interface ResultProps {
   listOfAlbums: [];
 }
 
@@ -29,66 +34,73 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
   const accessToken = useSelector(
     (state: { authorization: GlobalAction }) => state.authorization.access_token
   );
-  const dispatch = useDispatch();
   const favouriteAlbums = useSelector(
     (state: { favouriteAlbums: GlobalAction }) =>
       state.favouriteAlbums.favouriteAlbums
   );
+  const refresh_token = useSelector(
+    (state: { authorization: GlobalAction }) =>
+      state.authorization.refresh_token
+  );
+  const dispatch = useDispatch();
+
+  const fetchAlbumToFavourite = (album: Album) => {
+    fetch(`https://api.spotify.com/v1/albums/${album.id}/tracks`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        throw new Error();
+      })
+      .then((res) => {
+        const albumObj = {
+          albumIMG: album.images[1].url,
+          albumID: album.id,
+          albumName: album.name,
+          artistName: album.artists[0].name,
+          tracks: res.items,
+          spotifyAlbumURL: album.external_urls.spotify,
+        };
+        dispatch(dataFetched());
+        dispatch(addAlbumToFavourite(albumObj));
+      })
+      .catch((err) => {
+        dispatch(dataError(err.message));
+        refreshAccessToken(refresh_token, dispatch, setAccessTokens);
+      });
+  };
+
   const albumsFilter = listOfAlbums.filter(
     (album: { album_type: string }) => album.album_type === "album"
   );
 
   const albums = albumsFilter.map((album: Album) => {
-    const isDisabled = favouriteAlbums.find(
-      (favouriteAlbum: { albumID: string }) => {
-        if (album.id === favouriteAlbum.albumID) return true;
-        return false;
-      }
+    const isDisabledAddBtn = favouriteAlbums.find(
+      (favouriteAlbum: { albumID: string }) =>
+        album.id === favouriteAlbum.albumID
     );
     return (
       <div key={album.id} className="searchsection__result">
         <p className="searchsection__description">{album.name}</p>
         <img
           className="searchsection__albumImage"
-          src={album.images[2].url}
+          src={album.images[1].url}
           alt="Album"
         />
         <p className="searchsection__description">{album.artists[0].name}</p>
         <button
           className="searchsection__addToFavourite"
-          disabled={isDisabled}
+          disabled={isDisabledAddBtn}
           onClick={() => {
             dispatch(dataFetching());
-            fetch(`https://api.spotify.com/v1/albums/${album.id}/tracks`, {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            })
-              .then((res) => {
-                if (res.status === 200) {
-                  return res.json();
-                }
-                throw new Error();
-              })
-              .then((res) => {
-                const albumObj = {
-                  albumIMG: album.images[1].url,
-                  albumID: album.id,
-                  albumName: album.name,
-                  artistName: album.artists[0].name,
-                  tracks: res.items,
-                  spotifyAlbumURL: album.external_urls.spotify,
-                };
-                dispatch(dataFetched());
-                dispatch(addAlbumToFavourite(albumObj));
-              })
-              .catch((err) => {
-                dispatch(dataError(err.message));
-                console.log(err);
-              });
+            fetchAlbumToFavourite(album);
           }}
         >
-          {isDisabled ? "Dodano do ulubionych" : "Dodaj do ulubionych"}
+          {isDisabledAddBtn ? "Dodano do ulubionych" : "Dodaj do ulubionych"}
         </button>
       </div>
     );

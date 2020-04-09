@@ -27,16 +27,19 @@ export const albumDetailsReducer = (
         ...state,
         isAlbumDetailsVisible: action.isAlbumDetailsVisible,
       };
+
     case HIDE_ALBUM_DETAILS:
       return {
         ...state,
         isAlbumDetailsVisible: action.isAlbumDetailsVisible,
       };
+
     case SET_ALBUM_DETAILS:
       return {
         ...state,
         albumDetails: action.albumDetails,
       };
+
     default:
       return state;
   }
