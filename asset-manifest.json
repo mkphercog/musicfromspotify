@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/musicfromspotify/static/css/main.7fd0eaac.chunk.css",
-    "main.js": "/musicfromspotify/static/js/main.ebddfc70.chunk.js",
-    "main.js.map": "/musicfromspotify/static/js/main.ebddfc70.chunk.js.map",
+    "main.css": "/musicfromspotify/static/css/main.adb244b6.chunk.css",
+    "main.js": "/musicfromspotify/static/js/main.ab8d09fa.chunk.js",
+    "main.js.map": "/musicfromspotify/static/js/main.ab8d09fa.chunk.js.map",
     "runtime-main.js": "/musicfromspotify/static/js/runtime-main.b8f53c11.js",
     "runtime-main.js.map": "/musicfromspotify/static/js/runtime-main.b8f53c11.js.map",
-    "static/js/2.5b1e3a36.chunk.js": "/musicfromspotify/static/js/2.5b1e3a36.chunk.js",
-    "static/js/2.5b1e3a36.chunk.js.map": "/musicfromspotify/static/js/2.5b1e3a36.chunk.js.map",
+    "static/js/2.f3ca3788.chunk.js": "/musicfromspotify/static/js/2.f3ca3788.chunk.js",
+    "static/js/2.f3ca3788.chunk.js.map": "/musicfromspotify/static/js/2.f3ca3788.chunk.js.map",
     "index.html": "/musicfromspotify/index.html",
-    "precache-manifest.440aba69fb683c257d04c78fc034de2b.js": "/musicfromspotify/precache-manifest.440aba69fb683c257d04c78fc034de2b.js",
+    "precache-manifest.0164d45a0e5cf7a83931ca0b8e7b4524.js": "/musicfromspotify/precache-manifest.0164d45a0e5cf7a83931ca0b8e7b4524.js",
     "service-worker.js": "/musicfromspotify/service-worker.js",
-    "static/css/main.7fd0eaac.chunk.css.map": "/musicfromspotify/static/css/main.7fd0eaac.chunk.css.map",
-    "static/js/2.5b1e3a36.chunk.js.LICENSE.txt": "/musicfromspotify/static/js/2.5b1e3a36.chunk.js.LICENSE.txt",
+    "static/css/main.adb244b6.chunk.css.map": "/musicfromspotify/static/css/main.adb244b6.chunk.css.map",
+    "static/js/2.f3ca3788.chunk.js.LICENSE.txt": "/musicfromspotify/static/js/2.f3ca3788.chunk.js.LICENSE.txt",
     "static/media/loginHeadphones.jpg": "/musicfromspotify/static/media/loginHeadphones.1df5799c.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.b8f53c11.js",
-    "static/js/2.5b1e3a36.chunk.js",
-    "static/css/main.7fd0eaac.chunk.css",
-    "static/js/main.ebddfc70.chunk.js"
+    "static/js/2.f3ca3788.chunk.js",
+    "static/css/main.adb244b6.chunk.css",
+    "static/js/main.ab8d09fa.chunk.js"
   ]
 }
