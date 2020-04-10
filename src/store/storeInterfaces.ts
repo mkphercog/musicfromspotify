@@ -41,6 +41,15 @@ export type GlobalState =
   | PlayerState
   | AlbumDetailsState;
 
+export interface GlobalStateSelector {
+  authorization: AuthorizationState;
+  fetchData: FetchState;
+  searching: SearchState;
+  favouriteAlbums: FavouriteAlbumsState;
+  player: PlayerState;
+  albumDetails: AlbumDetailsState;
+}
+
 export interface GlobalAction
   extends AuthorizationState,
     FetchState,

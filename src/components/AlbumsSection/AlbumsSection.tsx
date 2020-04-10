@@ -4,11 +4,11 @@ import "./AlbumsSection.scss";
 
 import { AlbumDetails } from "./AlbumDetails/AlbumDetails";
 import { Album } from "./Album/Album";
-import { Player } from "./Player/Player";
+// import { Player } from "./Player/Player";
 
 import {
-  GlobalAction,
   AlbumDetails as AlbumDetailsInterface,
+  GlobalStateSelector,
 } from "../../store/storeInterfaces";
 
 import { deleteAlbumFromList } from "../../store/actions/AddToFavouriteActions";
@@ -20,25 +20,15 @@ import {
 
 export const AlbumsSection: React.SFC = () => {
   const favouriteAlbums = useSelector(
-    (state: { favouriteAlbums: GlobalAction }) =>
-      state.favouriteAlbums.favouriteAlbums
+    (state: GlobalStateSelector) => state.favouriteAlbums.favouriteAlbums
   );
-  // const currentTrack = useSelector(
-  //   (state: { player: GlobalAction }) => state.player.currentTrackURL
-  // );
-  // const isPlaying = useSelector(
-  //   (state: { player: GlobalAction }) => state.player.isPlaying
-  // );
+  const player = useSelector((state: GlobalStateSelector) => state.player);
+  const detailsAlbum = useSelector(
+    (state: GlobalStateSelector) => state.albumDetails
+  );
 
-  const player = useSelector((state: { player: GlobalAction }) => state.player);
+  const { albumDetails, isAlbumDetailsVisible } = detailsAlbum;
   const { currentTrackURL, isPlaying } = player;
-  const albumDetails = useSelector(
-    (state: { albumDetails: GlobalAction }) => state.albumDetails.albumDetails
-  );
-  const albumDetailsVisible = useSelector(
-    (state: { albumDetails: GlobalAction }) =>
-      state.albumDetails.isAlbumDetailsVisible
-  );
   const dispatch = useDispatch();
 
   const albums = favouriteAlbums.map((album: AlbumDetailsInterface) => (
@@ -61,7 +51,7 @@ export const AlbumsSection: React.SFC = () => {
         </div>
       )}
 
-      {albumDetailsVisible ? (
+      {isAlbumDetailsVisible ? (
         <AlbumDetails
           albumDetails={albumDetails}
           isPlaying={isPlaying}

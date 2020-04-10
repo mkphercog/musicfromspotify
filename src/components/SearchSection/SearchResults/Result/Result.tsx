@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Result.scss";
 
 import { refreshAccessToken } from "../../../../authorization/config";
-import { GlobalAction } from "../../../../store/storeInterfaces";
+import { GlobalStateSelector } from "../../../../store/storeInterfaces";
 
 import { addAlbumToFavourite } from "../../../../store/actions/AddToFavouriteActions";
 import { setAccessTokens } from "../../../../store/actions/AuthorizationActions";
@@ -29,25 +29,22 @@ interface Album {
 
 export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
   const isFetching = useSelector(
-    (state: { fetchData: GlobalAction }) => state.fetchData.featching
+    (state: GlobalStateSelector) => state.fetchData.featching
   );
-  const accessToken = useSelector(
-    (state: { authorization: GlobalAction }) => state.authorization.access_token
+  const authorization = useSelector(
+    (state: GlobalStateSelector) => state.authorization
   );
   const favouriteAlbums = useSelector(
-    (state: { favouriteAlbums: GlobalAction }) =>
-      state.favouriteAlbums.favouriteAlbums
+    (state: GlobalStateSelector) => state.favouriteAlbums.favouriteAlbums
   );
-  const refresh_token = useSelector(
-    (state: { authorization: GlobalAction }) =>
-      state.authorization.refresh_token
-  );
+
+  const { access_token, refresh_token } = authorization;
   const dispatch = useDispatch();
 
   const fetchAlbumToFavourite = (album: Album) => {
     fetch(`https://api.spotify.com/v1/albums/${album.id}/tracks`, {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${access_token}`,
       },
     })
       .then((res) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Player.scss";
-import { Track, GlobalAction } from "../../../store/storeInterfaces";
+import { GlobalStateSelector } from "../../../store/storeInterfaces";
 
 import {
   setAndPlayCurrentTrack,
@@ -21,7 +21,7 @@ export const Player: React.SFC<PlayerProps> = ({ tracks }) => {
   const dispatch = useDispatch();
   const tracksList = tracks;
   const currentTrack = useSelector(
-    (state: { player: GlobalAction }) => state.player.currentTrackURL
+    (state: GlobalStateSelector) => state.player.currentTrackURL
   );
 
   const play = () => {

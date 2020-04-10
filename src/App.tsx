@@ -7,7 +7,7 @@ import { WebsitePage } from "./pages/WebsitePage/WebsitePage";
 import { LoadingPage } from "./pages/LoadingPage/LoadingPage";
 
 import { getOptionsToConnect } from "./authorization/config";
-import { GlobalAction } from "./store/storeInterfaces";
+import { GlobalStateSelector, GlobalAction } from "./store/storeInterfaces";
 
 import { showSearchResults } from "./store/actions/SearchingActions";
 import { setAccessTokens } from "./store/actions/AuthorizationActions";
@@ -18,18 +18,19 @@ import {
 } from "./store/actions/FetchDataActions";
 
 export const App = () => {
-  const connectOptions = getOptionsToConnect();
-  const { codeToGetAccess, fetchOptions } = connectOptions;
-  const accessToken = useSelector(
-    (state: { authorization: GlobalAction }) => state.authorization.access_token
+  const access_token = useSelector(
+    (state: GlobalStateSelector) => state.authorization.access_token
   );
   const isFetching = useSelector(
-    (state: { fetchData: GlobalAction }) => state.fetchData.featching
+    (state: GlobalStateSelector) => state.fetchData.featching
   );
   const dispatch = useDispatch();
 
+  const connectOptions = getOptionsToConnect();
+  const { codeToGetAccess, fetchOptions } = connectOptions;
+
   useEffect(() => {
-    if (codeToGetAccess && !accessToken) {
+    if (codeToGetAccess && !access_token) {
       dispatch(dataFetching());
       fetch(`https://accounts.spotify.com/api/token`, fetchOptions)
         .then((res: Response) => {
@@ -60,7 +61,7 @@ export const App = () => {
   return (
     <div className="App">
       {isFetching ? <LoadingPage /> : null}
-      {accessToken ? <WebsitePage /> : <LoginPage />}
+      {access_token ? <WebsitePage /> : <LoginPage />}
     </div>
   );
 };

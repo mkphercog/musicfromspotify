@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./SearchSection.scss";
 
 import { refreshAccessToken } from "../../authorization/config";
-import { GlobalAction } from "../../store/storeInterfaces";
+import { GlobalStateSelector } from "../../store/storeInterfaces";
 
 import { SearchInput } from "./SearchInput/SearchInput";
 import { SearchButton } from "./SearchButton/SearchButton";
@@ -24,22 +24,17 @@ import {
 
 export const SearchSection: React.SFC = () => {
   const isFetching = useSelector(
-    (state: { fetchData: GlobalAction }) => state.fetchData.featching
+    (state: GlobalStateSelector) => state.fetchData.featching
   );
-  const isSearchResultsVisible = useSelector(
-    (state: { searching: GlobalAction }) =>
-      state.searching.isSearchResultsVisible
+  const searching = useSelector(
+    (state: GlobalStateSelector) => state.searching
   );
-  const accessToken = useSelector(
-    (state: { authorization: GlobalAction }) => state.authorization.access_token
+  const authorization = useSelector(
+    (state: GlobalStateSelector) => state.authorization
   );
-  const refresh_token = useSelector(
-    (state: { authorization: GlobalAction }) =>
-      state.authorization.refresh_token
-  );
-  const listOfAlbums = useSelector(
-    (state: { searching: GlobalAction }) => state.searching.listOfAlbums
-  );
+
+  const { isSearchResultsVisible, listOfAlbums } = searching;
+  const { access_token, refresh_token } = authorization;
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
 
@@ -50,7 +45,7 @@ export const SearchSection: React.SFC = () => {
       dispatch(dataFetching());
       fetch(`https://api.spotify.com/v1/search?q=${inputValue}&type=album`, {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       })
         .then((res: Response) => {
