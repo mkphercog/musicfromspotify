@@ -4,6 +4,7 @@ import "./AlbumsSection.scss";
 
 import { AlbumDetails } from "./AlbumDetails/AlbumDetails";
 import { Album } from "./Album/Album";
+import { Player } from "./Player/Player";
 
 import {
   GlobalAction,
@@ -22,12 +23,15 @@ export const AlbumsSection: React.SFC = () => {
     (state: { favouriteAlbums: GlobalAction }) =>
       state.favouriteAlbums.favouriteAlbums
   );
-  const currentTrack = useSelector(
-    (state: { player: GlobalAction }) => state.player.trackURL
-  );
-  const isPlaying = useSelector(
-    (state: { player: GlobalAction }) => state.player.isPlaying
-  );
+  // const currentTrack = useSelector(
+  //   (state: { player: GlobalAction }) => state.player.currentTrackURL
+  // );
+  // const isPlaying = useSelector(
+  //   (state: { player: GlobalAction }) => state.player.isPlaying
+  // );
+
+  const player = useSelector((state: { player: GlobalAction }) => state.player);
+  const { currentTrackURL, isPlaying } = player;
   const albumDetails = useSelector(
     (state: { albumDetails: GlobalAction }) => state.albumDetails.albumDetails
   );
@@ -61,12 +65,13 @@ export const AlbumsSection: React.SFC = () => {
         <AlbumDetails
           albumDetails={albumDetails}
           isPlaying={isPlaying}
-          currentTrack={currentTrack}
+          currentTrack={currentTrackURL}
           dispatch={dispatch}
           hideAlbumDetails={hideAlbumDetails}
           deleteAlbumFromList={deleteAlbumFromList}
         />
       ) : null}
+      {/* <Player tracks={albumDetails.tracks} /> */}
     </section>
   );
 };

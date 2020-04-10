@@ -20,8 +20,12 @@ interface FavouriteAlbumsState {
 }
 
 interface PlayerState {
-  trackURL: string;
+  currentTrackName: string;
+  currentTrackURL: string;
   isPlaying: boolean;
+  currentTrackNumber: number;
+  allTracksInAlbum: number;
+  albumTracksURLs: [];
 }
 
 interface AlbumDetailsState {

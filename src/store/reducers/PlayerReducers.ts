@@ -4,8 +4,12 @@ import { GlobalState, GlobalAction } from "../storeInterfaces";
 const player = new Audio();
 
 const INITIAL_STATE: GlobalState = {
-  trackURL: "",
+  currentTrackName: "",
+  currentTrackURL: "",
   isPlaying: false,
+  currentTrackNumber: 0,
+  allTracksInAlbum: 0,
+  albumTracksURLs: [],
 };
 
 export const currentTrackReducer = (
@@ -14,11 +18,11 @@ export const currentTrackReducer = (
 ) => {
   switch (action.type) {
     case SET_AND_PLAY_CURRENT_TRACK:
-      player.src = action.trackURL;
+      player.src = action.currentTrackURL;
       player.play();
       return {
         ...state,
-        trackURL: action.trackURL,
+        currentTrackURL: action.currentTrackURL,
         isPlaying: true,
       };
 
@@ -26,7 +30,7 @@ export const currentTrackReducer = (
       player.pause();
       return {
         ...state,
-        trackURL: "",
+        currentTrackURL: "",
         isPlaying: false,
       };
 
