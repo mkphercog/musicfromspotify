@@ -14,6 +14,7 @@ const INITIAL_STATE: GlobalState = {
     artistName: "",
     tracks: [],
     spotifyAlbumURL: "",
+    totalTracks: 0,
   },
 };
 

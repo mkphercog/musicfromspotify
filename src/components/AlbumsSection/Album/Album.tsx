@@ -29,6 +29,7 @@ export const Album: React.SFC<AlbumProps> = ({
             artistName: album.artistName,
             tracks: album.tracks,
             spotifyAlbumURL: album.spotifyAlbumURL,
+            totalTracks: album.totalTracks,
           })
         );
       }}

@@ -29,9 +29,9 @@ export const Player: React.SFC<PlayerProps> = ({ tracks }) => {
       (track) => currentTrack === track.preview_url
     );
     if (findTrackNumber !== -1) {
-      dispatch(setAndPlayCurrentTrack(tracksList[findTrackNumber].preview_url));
+      // dispatch(setAndPlayCurrentTrack(tracksList[findTrackNumber].preview_url));
     } else {
-      dispatch(setAndPlayCurrentTrack(tracksList[0].preview_url));
+      // dispatch(setAndPlayCurrentTrack(tracksList[0].preview_url));
     }
     setTimeout(next, 30000);
   };
@@ -46,11 +46,11 @@ export const Player: React.SFC<PlayerProps> = ({ tracks }) => {
     );
 
     if (findTrackNumber + 1 < tracks.length) {
-      dispatch(
-        setAndPlayCurrentTrack(tracksList[findTrackNumber + 1].preview_url)
-      );
+      // dispatch(
+      // setAndPlayCurrentTrack(tracksList[findTrackNumber + 1].preview_url)
+      // );
     } else {
-      dispatch(setAndPlayCurrentTrack(tracksList[0].preview_url));
+      // dispatch(setAndPlayCurrentTrack(tracksList[0].preview_url));
     }
   };
 
@@ -59,13 +59,13 @@ export const Player: React.SFC<PlayerProps> = ({ tracks }) => {
       (track) => currentTrack === track.preview_url
     );
     if (findTrackNumber - 1 >= 0) {
-      dispatch(
-        setAndPlayCurrentTrack(tracksList[findTrackNumber - 1].preview_url)
-      );
+      // dispatch(
+      //   setAndPlayCurrentTrack(tracksList[findTrackNumber - 1].preview_url)
+      // );
     } else {
-      dispatch(
-        setAndPlayCurrentTrack(tracksList[tracks.length - 1].preview_url)
-      );
+      // dispatch(
+      //   setAndPlayCurrentTrack(tracksList[tracks.length - 1].preview_url)
+      // );
     }
   };
 

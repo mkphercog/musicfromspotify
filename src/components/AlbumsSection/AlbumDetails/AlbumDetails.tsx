@@ -1,21 +1,17 @@
 import React from "react";
 import "./AlbumDetails.scss";
-import { Tracks } from "../Tracks/Tracks";
+import { Tracks } from "./Tracks/Tracks";
 import {
   setAndPlayCurrentTrack,
   stopMusic,
 } from "../../../store/actions/PlayerActions";
-import { Track } from "../../../store/storeInterfaces";
+import {
+  Track,
+  AlbumDetails as AlbumDetailsInterface,
+} from "../../../store/storeInterfaces";
 
 export interface AlbumDetailsProps {
-  albumDetails: {
-    albumIMG: string;
-    artistName: string;
-    albumName: string;
-    spotifyAlbumURL: string;
-    tracks: [];
-    albumID: string;
-  };
+  albumDetails: AlbumDetailsInterface;
   isPlaying: boolean;
   currentTrack: string;
   dispatch: Function;
@@ -49,6 +45,7 @@ export const AlbumDetails: React.SFC<AlbumDetailsProps> = ({
         dispatch={dispatch}
         stopMusic={stopMusic}
         setAndPlayCurrentTrack={setAndPlayCurrentTrack}
+        allTracksInAlbum={albumDetails.totalTracks}
       />
     );
   });

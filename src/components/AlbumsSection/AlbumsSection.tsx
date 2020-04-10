@@ -4,7 +4,7 @@ import "./AlbumsSection.scss";
 
 import { AlbumDetails } from "./AlbumDetails/AlbumDetails";
 import { Album } from "./Album/Album";
-// import { Player } from "./Player/Player";
+import { Player } from "./Player/Player";
 
 import {
   AlbumDetails as AlbumDetailsInterface,
@@ -61,7 +61,7 @@ export const AlbumsSection: React.SFC = () => {
           deleteAlbumFromList={deleteAlbumFromList}
         />
       ) : null}
-      {/* <Player tracks={albumDetails.tracks} /> */}
+      <Player tracks={albumDetails.tracks} />
     </section>
   );
 };

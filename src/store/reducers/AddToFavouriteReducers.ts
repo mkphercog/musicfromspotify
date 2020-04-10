@@ -22,6 +22,7 @@ export const addFavouriteAlbumReducer = (
         artistName: action.artistName,
         tracks: action.tracks,
         spotifyAlbumURL: action.spotifyAlbumURL,
+        totalTracks: action.totalTracks,
       };
       localStorage.setItem(
         "favouriteAlbums",

@@ -25,6 +25,7 @@ interface Album {
   id: string;
   images: { url: string }[];
   external_urls: { spotify: string };
+  total_tracks: number;
 }
 
 export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
@@ -61,6 +62,7 @@ export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
           artistName: album.artists[0].name,
           tracks: res.items,
           spotifyAlbumURL: album.external_urls.spotify,
+          totalTracks: album.total_tracks,
         };
         dispatch(dataFetched());
         dispatch(addAlbumToFavourite(albumObj));

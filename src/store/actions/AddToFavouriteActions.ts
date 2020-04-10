@@ -9,6 +9,7 @@ export const addAlbumToFavourite = (album: AlbumDetails) => ({
   artistName: album.artistName,
   tracks: album.tracks,
   spotifyAlbumURL: album.spotifyAlbumURL,
+  totalTracks: album.totalTracks,
 });
 
 export const deleteAlbumFromList = (albumID: string) => ({

@@ -9,7 +9,6 @@ const INITIAL_STATE: GlobalState = {
   isPlaying: false,
   currentTrackNumber: 0,
   allTracksInAlbum: 0,
-  albumTracksURLs: [],
 };
 
 export const currentTrackReducer = (
@@ -22,16 +21,22 @@ export const currentTrackReducer = (
       player.play();
       return {
         ...state,
+        currentTrackName: action.currentTrackName,
         currentTrackURL: action.currentTrackURL,
         isPlaying: true,
+        currentTrackNumber: action.currentTrackNumber,
+        allTracksInAlbum: action.allTracksInAlbum,
       };
 
     case STOP_PLAYING_TRACK:
       player.pause();
       return {
         ...state,
+        currentTrackName: "",
         currentTrackURL: "",
         isPlaying: false,
+        currentTrackNumber: "",
+        allTracksInAlbum: 0,
       };
 
     default:

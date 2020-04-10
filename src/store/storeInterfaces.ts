@@ -25,7 +25,6 @@ interface PlayerState {
   isPlaying: boolean;
   currentTrackNumber: number;
   allTracksInAlbum: number;
-  albumTracksURLs: [];
 }
 
 interface AlbumDetailsState {
@@ -68,6 +67,7 @@ export interface AlbumDetails {
   artistName: string;
   tracks: [];
   spotifyAlbumURL: string;
+  totalTracks: number;
 }
 
 export interface Track {
