@@ -10,24 +10,24 @@
   flex-wrap: wrap;
   width: 20vw;
   padding: 10px;
+}
 
-  .player__trackName {
-    width: 100%;
-    padding: 5px;
-    text-align: center;
-    font-size: 15px;
-  }
+.player__track-name {
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  font-size: 15px;
+}
 
-  .player__controlers {
-    padding: 8px;
-    font-size: 15px;
-    background-color: black;
-    color: white;
-    border: none;
-    cursor: pointer;
+.player__controlers {
+  padding: 8px;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 
-    .player__prev {
-      transform: rotate(180deg);
-    }
-  }
+.player__prev {
+  transform: rotate(180deg);
 }

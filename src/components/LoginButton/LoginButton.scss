@@ -1,6 +1,6 @@
 @import "../../styles/variables.scss";
 
-.loginpage__buttons {
+.login-page__buttons {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,45 +8,45 @@
   padding: 25px 50px;
   background-color: rgba(0, 0, 0, 0.75);
   border-radius: 20px;
+}
 
-  .loginpage__loginBtn {
-    padding: 10px 15px;
+.login-page__login-btn {
+  padding: 10px 15px;
+  font-size: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 2px solid $green-color;
+  border-radius: 30px;
+  color: $green-color;
+  transition: 0.2s;
+
+  @media (min-width: 411px) {
+    font-size: 18px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 10px 25px;
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .login-page__login-btn:hover {
+    background-color: $green-color;
+    color: black;
+  }
+}
+
+.login-page__register-btn {
+  font-size: 12px;
+  margin-top: 10px;
+  color: $red-color;
+
+  @media (min-width: 411px) {
+    font-size: 13px;
+  }
+
+  @media (min-width: 411px) {
     font-size: 15px;
-    text-decoration: none;
-    text-transform: uppercase;
-    border: 2px solid $green-color;
-    border-radius: 30px;
-    color: $green-color;
-    transition: 0.2s;
-
-    @media (min-width: 411px) {
-      font-size: 18px;
-    }
-
-    @media (min-width: 768px) {
-      padding: 10px 25px;
-      font-size: 25px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .loginpage__loginBtn:hover {
-      background-color: $green-color;
-      color: black;
-    }
-  }
-
-  .loginpage__registerBtn {
-    font-size: 12px;
-    margin-top: 10px;
-    color: $red-color;
-
-    @media (min-width: 411px) {
-      font-size: 13px;
-    }
-
-    @media (min-width: 411px) {
-      font-size: 15px;
-    }
   }
 }

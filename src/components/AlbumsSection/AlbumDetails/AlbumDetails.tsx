@@ -31,11 +31,11 @@ export const AlbumDetails: React.FC<AlbumDetailsProps> = ({
   const tracksListCurrentAlbum = albumDetails.tracks.map((track: Track) => {
     const isTrackPlaying = isPlaying && currentTrack === track.preview_url;
     const trackClasses = isTrackPlaying
-      ? "albumssection__detailsTrackName albumssection__detailsTrackName--green"
-      : "albumssection__detailsTrackName";
+      ? "albums-section__details-track-name albums-section__details-track-name--green"
+      : "albums-section__details-track-name";
     const stopBtnClasses = isTrackPlaying
-      ? "albumssection__detailsTrackButton albumssection__detailsTrackButton--green"
-      : "albumssection__detailsTrackButton";
+      ? "albums-section__details-track-button albums-section__details-track-button--green"
+      : "albums-section__details-track-button";
     return (
       <>
         <Tracks
@@ -55,24 +55,24 @@ export const AlbumDetails: React.FC<AlbumDetailsProps> = ({
   });
 
   return (
-    <div className="albumssection__detailsAlbum">
-      <div className="albumssection__albumInfoWrapper">
+    <div className="albums-section__details-album">
+      <div className="albums-section__album-info-wrapper">
         <img
-          className="albumssection__detailsImage"
+          className="albums-section__details-image"
           src={albumDetails.albumIMG}
           alt="Album"
         />
-        <div className="albumssection__detailsNameWrapper">
-          <h1 className="albumssection__detailsArtistName">
+        <div className="albums-section__details-name-wrapper">
+          <h1 className="albums-section__details-artist-name">
             {albumDetails.artistName}
           </h1>
-          <h2 className="albumssection__detailsAlbumName">
+          <h2 className="albums-section__details-album-name">
             {albumDetails.albumName}
           </h2>
         </div>
-        <div className="albumssection__detailsButtonsWrapper">
+        <div className="albums-section__details-buttons-wrapper">
           <a
-            className="albumssection__detailsFullAlbumSpotify"
+            className="albums-section__details-full-album-spotify"
             href={albumDetails.spotifyAlbumURL}
             target="_blank"
             rel="noopener noreferrer"
@@ -80,7 +80,7 @@ export const AlbumDetails: React.FC<AlbumDetailsProps> = ({
             Pełny album znajdziesz tutaj
           </a>
           <button
-            className="albumssection__detailsDeleteAlbum"
+            className="albums-section__details-delete-album"
             onClick={() => {
               dispatch(hideAlbumDetails());
               dispatch(deleteAlbumFromList(albumDetails.albumID));
@@ -90,11 +90,11 @@ export const AlbumDetails: React.FC<AlbumDetailsProps> = ({
           </button>
         </div>
       </div>
-      <div className="albumssection__tracksWrapper">
+      <div className="albums-section__tracks-wrapper">
         {tracksListCurrentAlbum}
       </div>
       <button
-        className="albumssection__detailsClose"
+        className="albums-section__details-close"
         onClick={() => dispatch(hideAlbumDetails())}
       >
         <i className="fas fa-times"></i>

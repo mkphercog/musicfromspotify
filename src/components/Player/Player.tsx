@@ -84,7 +84,7 @@ export const Player: React.FC<PlayerProps> = ({ tracks }) => {
 
   return (
     <div className="player">
-      <p className="player__trackName">{`${currentAlbumArtist} - ${currentTrackName}`}</p>
+      <p className="player__track-name">{`${currentAlbumArtist} - ${currentTrackName}`}</p>
       <button className="player__controlers" onClick={prev}>
         <i className="fas fa-step-forward player__prev"></i>
       </button>

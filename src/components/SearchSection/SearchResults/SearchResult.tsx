@@ -17,16 +17,16 @@ export const SearchResult: React.FC<SearchResultProps> = ({
   setInputValue,
   searchAlbums,
 }) => (
-  <div className="searchsection___wrapper">
-    <div className="searchsection__results">
+  <div className="search-section___wrapper">
+    <div className="search-section__results">
       {listOfAlbums.length ? (
         <Result listOfAlbums={listOfAlbums} />
       ) : (
-        <p className="searchsection__noResults">Brak wyników wyszukiwania</p>
+        <p className="search-section__no-results">Brak wyników wyszukiwania</p>
       )}
     </div>
     <button
-      className="searchsection__close"
+      className="search-section__close"
       onClick={() => {
         dispatch(hideSearchResults());
         setInputValue("");

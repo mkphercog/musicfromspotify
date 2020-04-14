@@ -5,7 +5,7 @@ import { Main } from "../../components/Main/Main";
 import { Footer } from "../../components/Footer/Footer";
 
 export const WebsitePage: React.FC = () => (
-  <div className="websitepage">
+  <div className="website-page">
     <Header />
     <Main />
     <Footer />

@@ -17,7 +17,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   dispatch,
 }) => (
   <input
-    className="searchsection__input"
+    className="search-section__input"
     placeholder="Wyszukaj album / artystę..."
     type="text"
     value={inputValue}

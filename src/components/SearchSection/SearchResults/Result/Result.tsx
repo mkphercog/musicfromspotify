@@ -83,16 +83,16 @@ export const Result: React.FC<ResultProps> = ({ listOfAlbums }) => {
         album.id === favouriteAlbum.albumID
     );
     return (
-      <div key={album.id} className="searchsection__result">
-        <p className="searchsection__description">{album.name}</p>
+      <div key={album.id} className="search-section__result">
+        <p className="search-section__description">{album.name}</p>
         <img
-          className="searchsection__albumImage"
+          className="search-section__album-image"
           src={album.images[1].url}
           alt="Album"
         />
-        <p className="searchsection__description">{album.artists[0].name}</p>
+        <p className="search-section__description">{album.artists[0].name}</p>
         <button
-          className="searchsection__addToFavourite"
+          className="search-section__add-to-favourite"
           disabled={isDisabledAddBtn}
           onClick={() => {
             dispatch(dataFetching());

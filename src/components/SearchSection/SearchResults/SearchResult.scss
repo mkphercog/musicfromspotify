@@ -1,6 +1,6 @@
 @import "../../../styles/variables.scss";
 
-.searchsection___wrapper {
+.search-section___wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,29 +24,29 @@
     box-shadow: 0 0 0 0 transparent;
     z-index: 0;
   }
+}
 
-  .searchsection__results {
-    overflow-y: auto;
+.search-section__results {
+  overflow-y: auto;
+}
 
-    .searchsection__noResults {
-      @media (min-width: 768px) and (orientation: portrait) {
-        font-size: 24px;
-      }
-    }
+.search-section__no-results {
+  @media (min-width: 768px) and (orientation: portrait) {
+    font-size: 24px;
   }
+}
 
-  .searchsection__close {
-    padding: 5px 15px;
-    margin: 5px auto;
-    background-color: white;
-    border: 2px solid black;
-    font-size: 17px;
+.search-section__close {
+  padding: 5px 15px;
+  margin: 5px auto;
+  background-color: white;
+  border: 2px solid black;
+  font-size: 17px;
 
-    @media (min-width: 768px) and (orientation: portrait) {
-      font-size: 24px;
-    }
-    @media (min-width: 1024px) {
-      display: none;
-    }
+  @media (min-width: 768px) and (orientation: portrait) {
+    font-size: 24px;
+  }
+  @media (min-width: 1024px) {
+    display: none;
   }
 }

@@ -15,10 +15,10 @@ export const Album: React.FC<AlbumProps> = ({
   showAlbumDetails,
   setAlbumDetails,
 }) => (
-  <div className="albumssection__wrapper">
-    <img src={album.albumIMG} alt="Album" className="albumssection__image" />
+  <div className="albums-section__wrapper">
+    <img src={album.albumIMG} alt="Album" className="albums-section__image" />
     <div
-      className="albumssection__hoverDiv"
+      className="albums-section__hover-div"
       onClick={() => {
         dispatch(showAlbumDetails());
         dispatch(
@@ -34,8 +34,8 @@ export const Album: React.FC<AlbumProps> = ({
         );
       }}
     >
-      <p className="albumssection__nameHover">{album.artistName}</p>
-      <p className="albumssection__nameHover">{album.albumName}</p>
+      <p className="albums-section__name-hover">{album.artistName}</p>
+      <p className="albums-section__name-hover">{album.albumName}</p>
     </div>
   </div>
 );

@@ -24,7 +24,7 @@ export const Tracks: React.FC<TracksProps> = ({
   setCurrentTrack,
   albumDetails,
 }) => (
-  <div className="albumssection__trackWrapper">
+  <div className="albums-section__track-wrapper">
     {track.preview_url ? (
       isTrackPlaying ? (
         <button
@@ -37,7 +37,7 @@ export const Tracks: React.FC<TracksProps> = ({
         </button>
       ) : (
         <button
-          className="albumssection__detailsTrackButton"
+          className="albums-section__details-track-button"
           onClick={() => {
             console.log(track);
             dispatch(setCurrentTrack(track, albumDetails));
@@ -48,7 +48,7 @@ export const Tracks: React.FC<TracksProps> = ({
         </button>
       )
     ) : (
-      <button className="albumssection__detailsTrackButton" disabled>
+      <button className="albums-section__details-track-button" disabled>
         Play
       </button>
     )}

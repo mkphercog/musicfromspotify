@@ -6,7 +6,7 @@ import { LoginButton } from "../../components/LoginButton/LoginButton";
 export const LoginPage: React.FC = () => (
   <div
     style={{ backgroundImage: `url(${loginHeadphones})` }}
-    className="loginpage"
+    className="login-page"
   >
     <LoginButton />
   </div>

@@ -1,57 +1,59 @@
 @import "../../../../styles/variables.scss";
 
-.searchsection__result {
+.search-section__result {
   margin-top: 10px;
   border-top: 1px solid black;
   margin: 10px;
+}
 
-  .searchsection__albumImage {
-    width: 100px;
+.search-section__album-image {
+  width: 100px;
 
-    @media (min-width: 768px) and (orientation: portrait) {
-      width: 120px;
-    }
+  @media (min-width: 768px) and (orientation: portrait) {
+    width: 120px;
+  }
+}
+
+.search-section__description {
+  padding: 5px;
+  font-size: 19px;
+
+  @media (min-width: 768px) and (orientation: portrait) {
+    font-size: 22px;
+  }
+}
+
+.search-section__add-to-favourite {
+  padding: 5px 10px;
+  margin: 5px auto;
+  background-color: transparent;
+  border: none;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  color: $green-color;
+  text-shadow: 0 0 1px white;
+  transition: 0.2s;
+
+  @media (min-width: 768px) and (orientation: portrait) {
+    font-size: 22px;
   }
 
-  .searchsection__description {
-    padding: 5px;
-    font-size: 19px;
-
-    @media (min-width: 768px) and (orientation: portrait) {
-      font-size: 22px;
-    }
-  }
-
-  .searchsection__addToFavourite {
-    padding: 5px 10px;
-    margin: 5px auto;
-    background-color: transparent;
-    border: none;
-    background-color: white;
-    border-radius: 10px;
-    font-size: 14px;
-    color: $green-color;
-    text-shadow: 0 0 1px white;
-    transition: 0.2s;
-
-    @media (min-width: 768px) and (orientation: portrait) {
-      font-size: 22px;
-    }
-
-    @media (min-width: 1024px) {
-      cursor: pointer;
-    }
-  }
   @media (min-width: 1024px) {
-    .searchsection__addToFavourite:hover {
-      background-color: $green-color;
-      color: white;
-    }
+    cursor: pointer;
   }
-  .searchsection__addToFavourite:disabled {
-    background-color: white;
-    opacity: 0.5;
-    color: black;
-    cursor: not-allowed;
+}
+
+@media (min-width: 1024px) {
+  .search-section__add-to-favourite:hover {
+    background-color: $green-color;
+    color: white;
   }
+}
+
+.search-section__add-to-favourite:disabled {
+  background-color: white;
+  opacity: 0.5;
+  color: black;
+  cursor: not-allowed;
 }

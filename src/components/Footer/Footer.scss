@@ -7,16 +7,16 @@
   height: 5vh;
   margin-top: 10px;
   background-color: $basic-bgc-color;
+}
 
-  .footer__author {
-    font-size: 12px;
+.footer__author {
+  font-size: 12px;
 
-    @media (min-width: 411px) {
-      font-size: 14px;
-    }
+  @media (min-width: 411px) {
+    font-size: 14px;
+  }
 
-    @media (min-width: 768px) {
-      font-size: 15px;
-    }
+  @media (min-width: 768px) {
+    font-size: 15px;
   }
 }

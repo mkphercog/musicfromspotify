@@ -1,6 +1,6 @@
 @import "../../../styles/variables.scss";
 
-.albumssection__detailsAlbum {
+.albums-section__details-album {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -22,139 +22,141 @@
     width: 80vw;
     height: 75vh;
   }
+}
 
-  .albumssection__albumInfoWrapper {
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
+.albums-section__album-info-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
 
-    @media (orientation: landscape) {
-      flex-basis: 45%;
-    }
-
-    @media (min-width: 1024px) {
-      flex-basis: 40%;
-      overflow-y: auto;
-    }
-
-    .albumssection__detailsImage {
-      width: 35%;
-      margin-top: 15px;
-
-      @media (orientation: landscape) {
-        width: 50%;
-      }
-      @media (min-width: 1024px) {
-        width: 70%;
-      }
-    }
-    .albumssection__detailsNameWrapper {
-      margin: 10px;
-      text-align: center;
-
-      .albumssection__detailsArtistName {
-        margin: 3px;
-        font-size: 18px;
-
-        @media (min-width: 768px) and (orientation: portrait) {
-          font-size: 22px;
-        }
-
-        @media (min-width: 1024px) {
-          font-size: 25px;
-        }
-      }
-      .albumssection__detailsAlbumName {
-        font-size: 16px;
-
-        @media (min-width: 768px) and (orientation: portrait) {
-          font-size: 22px;
-        }
-
-        @media (min-width: 1024px) {
-          font-size: 23px;
-        }
-      }
-    }
-
-    .albumssection__detailsButtonsWrapper {
-      margin: 10px;
-      text-align: center;
-
-      .albumssection__detailsFullAlbumSpotify {
-        margin: 5px;
-        display: block;
-        padding: 8px 15px;
-        text-decoration: none;
-        font-size: 15px;
-        color: white;
-        background-color: black;
-
-        @media (min-width: 768px) and (orientation: portrait) {
-          font-size: 20px;
-        }
-
-        @media (min-width: 1024px) {
-          transition: 0.2s;
-          font-size: 18px;
-        }
-      }
-
-      @media (min-width: 1024px) {
-        .albumssection__detailsFullAlbumSpotify:hover {
-          background-color: $green-color;
-        }
-      }
-
-      .albumssection__detailsDeleteAlbum {
-        padding: 5px 15px;
-        border: 2px solid $red-color;
-        text-decoration: none;
-        background-color: transparent;
-        color: $red-color;
-        font-size: 15px;
-
-        @media (min-width: 768px) and (orientation: portrait) {
-          font-size: 20px;
-        }
-
-        @media (min-width: 1024px) {
-          transition: 0.2s;
-          font-size: 18px;
-          cursor: pointer;
-        }
-      }
-
-      @media (min-width: 1024px) {
-        .albumssection__detailsDeleteAlbum:hover {
-          background-color: $red-color;
-          color: white;
-        }
-      }
-    }
+  @media (orientation: landscape) {
+    flex-basis: 45%;
   }
 
-  .albumssection__detailsClose {
-    position: absolute;
-    top: 10px;
-    right: 25px;
-    font-size: 30px;
-    font-weight: bold;
-    background-color: transparent;
-    border: transparent;
+  @media (min-width: 1024px) {
+    flex-basis: 40%;
+    overflow-y: auto;
+  }
+}
 
-    @media (min-width: 768px) and (orientation: portrait) {
-      font-size: 45px;
-    }
+.albums-section__details-full-album-spotify {
+  margin: 5px;
+  display: block;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-size: 15px;
+  color: white;
+  background-color: black;
 
-    @media (min-width: 1024px) {
-      cursor: pointer;
-      font-size: 35px;
-      right: 30px;
-      top: 15px;
-    }
+  @media (min-width: 768px) and (orientation: portrait) {
+    font-size: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    transition: 0.2s;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .albums-section__details-full-album-spotify:hover {
+    background-color: $green-color;
+  }
+}
+
+.albums-section__details-delete-album {
+  padding: 5px 15px;
+  border: 2px solid $red-color;
+  text-decoration: none;
+  background-color: transparent;
+  color: $red-color;
+  font-size: 15px;
+
+  @media (min-width: 768px) and (orientation: portrait) {
+    font-size: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    transition: 0.2s;
+    font-size: 18px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 1024px) {
+  .albums-section__details-delete-album:hover {
+    background-color: $red-color;
+    color: white;
+  }
+}
+
+.albums-section__details-image {
+  width: 35%;
+  margin-top: 15px;
+
+  @media (orientation: landscape) {
+    width: 50%;
+  }
+  @media (min-width: 1024px) {
+    width: 70%;
+  }
+}
+
+.albums-section__details-artist-name {
+  margin: 3px;
+  font-size: 18px;
+
+  @media (min-width: 768px) and (orientation: portrait) {
+    font-size: 22px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 25px;
+  }
+}
+
+.albums-section__details-name-wrapper {
+  margin: 10px;
+  text-align: center;
+}
+
+.albums-section__details-album-name {
+  font-size: 16px;
+
+  @media (min-width: 768px) and (orientation: portrait) {
+    font-size: 22px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 23px;
+  }
+}
+
+.albums-section__details-buttons-wrapper {
+  margin: 10px;
+  text-align: center;
+}
+
+.albums-section__details-close {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: transparent;
+  border: transparent;
+
+  @media (min-width: 768px) and (orientation: portrait) {
+    font-size: 45px;
+  }
+
+  @media (min-width: 1024px) {
+    cursor: pointer;
+    font-size: 35px;
+    right: 30px;
+    top: 15px;
   }
 }

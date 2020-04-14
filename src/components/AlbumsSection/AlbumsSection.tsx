@@ -31,7 +31,7 @@ export const AlbumsSection: React.FC = () => {
   const { currentTrackURL, isPlaying } = player;
   const dispatch = useDispatch();
 
-  const albums = favouriteAlbums.map((album: AlbumDetailsInterface) => (
+  const renderAlbums = favouriteAlbums.map((album: AlbumDetailsInterface) => (
     <Album
       key={album.albumID}
       album={album}
@@ -42,12 +42,12 @@ export const AlbumsSection: React.FC = () => {
   ));
 
   return (
-    <section className="albumssection">
-      {albums.length ? (
-        albums.reverse()
+    <section className="albums-section">
+      {renderAlbums.length ? (
+        renderAlbums.reverse()
       ) : (
-        <div className="albumssection__noResults">
-          <p className="albumssection__noResultName">Brak albumów</p>
+        <div className="albums-section__no-results">
+          <p className="albums-section__no-result-name">Brak albumów</p>
         </div>
       )}
 

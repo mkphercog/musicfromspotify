@@ -66,16 +66,16 @@ export const SearchSection: React.FC = () => {
   };
 
   return (
-    <section className="searchsection">
+    <section className="search-section">
       {isFetching ? <LoadingPage /> : null}
       <form
-        className="searchsection__form"
+        className="search-section__form"
         onSubmit={(e) => {
           if (!isSearchResultsVisible) dispatch(showSearchResults());
           handleSubmit(e);
         }}
       >
-        <div className="searchsection__relative">
+        <div className="search-section__relative">
           <SearchInput
             inputValue={inputValue}
             setInputValue={setInputValue}
@@ -87,7 +87,7 @@ export const SearchSection: React.FC = () => {
         </div>
       </form>
 
-      <div className="searchsection__resultsPosition">
+      <div className="search-section__results-position">
         {isSearchResultsVisible ? (
           <SearchResult
             dispatch={dispatch}

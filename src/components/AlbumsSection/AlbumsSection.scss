@@ -1,6 +1,6 @@
 @import "../../styles/variables.scss";
 
-.albumssection {
+.albums-section {
   flex-grow: 1;
 
   display: flex;
@@ -17,26 +17,26 @@
     align-items: flex-start;
     align-content: flex-start;
   }
-
-  .albumssection__noResults {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-
-    .albumssection__noResultName {
-      font-size: 18px;
-    }
-  }
 }
 
-.albumssection::-webkit-scrollbar {
+.albums-section::-webkit-scrollbar {
   display: none;
 }
 
 @media (min-width: 1024px) {
-  .albumssection::-webkit-scrollbar {
+  .albums-section::-webkit-scrollbar {
     display: block;
   }
+}
+
+.albums-section__no-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.albums-section__no-result-name {
+  font-size: 18px;
 }
