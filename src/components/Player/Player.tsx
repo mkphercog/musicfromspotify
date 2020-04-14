@@ -18,7 +18,7 @@ export interface PlayerProps {
   }[];
 }
 
-export const Player: React.SFC<PlayerProps> = ({ tracks }) => {
+export const Player: React.FC<PlayerProps> = ({ tracks }) => {
   const dispatch = useDispatch();
   const player = useSelector((state: GlobalStateSelector) => state.player);
   const {

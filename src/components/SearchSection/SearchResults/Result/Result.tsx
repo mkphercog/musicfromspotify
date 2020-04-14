@@ -28,7 +28,7 @@ interface Album {
   total_tracks: number;
 }
 
-export const Result: React.SFC<ResultProps> = ({ listOfAlbums }) => {
+export const Result: React.FC<ResultProps> = ({ listOfAlbums }) => {
   const isFetching = useSelector(
     (state: GlobalStateSelector) => state.fetchData.featching
   );

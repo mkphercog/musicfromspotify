@@ -10,7 +10,7 @@ interface SearchResultProps {
   searchAlbums: Function;
 }
 
-export const SearchResult: React.SFC<SearchResultProps> = ({
+export const SearchResult: React.FC<SearchResultProps> = ({
   listOfAlbums,
   hideSearchResults,
   dispatch,

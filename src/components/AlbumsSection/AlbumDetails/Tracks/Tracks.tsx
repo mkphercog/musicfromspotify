@@ -14,7 +14,7 @@ export interface TracksProps {
   albumDetails: AlbumDetails;
 }
 
-export const Tracks: React.SFC<TracksProps> = ({
+export const Tracks: React.FC<TracksProps> = ({
   track,
   isTrackPlaying,
   stopBtnClasses,

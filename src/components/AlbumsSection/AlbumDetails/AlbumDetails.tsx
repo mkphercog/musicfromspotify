@@ -20,7 +20,7 @@ export interface AlbumDetailsProps {
   deleteAlbumFromList: Function;
 }
 
-export const AlbumDetails: React.SFC<AlbumDetailsProps> = ({
+export const AlbumDetails: React.FC<AlbumDetailsProps> = ({
   albumDetails,
   isPlaying,
   currentTrack,

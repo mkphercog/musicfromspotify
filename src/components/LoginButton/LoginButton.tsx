@@ -2,7 +2,7 @@ import React from "react";
 import "./LoginButton.scss";
 import { URL } from "../../authorization/config";
 
-export const LoginButton: React.SFC = () => (
+export const LoginButton: React.FC = () => (
   <div className="loginpage__buttons">
     <a className="loginpage__loginBtn" href={URL}>
       Zaloguj się do Spotify

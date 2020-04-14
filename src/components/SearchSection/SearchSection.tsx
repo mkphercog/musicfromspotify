@@ -22,7 +22,7 @@ import {
   dataError,
 } from "../../store/actions/FetchDataActions";
 
-export const SearchSection: React.SFC = () => {
+export const SearchSection: React.FC = () => {
   const isFetching = useSelector(
     (state: GlobalStateSelector) => state.fetchData.featching
   );

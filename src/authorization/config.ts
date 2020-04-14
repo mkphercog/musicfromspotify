@@ -29,7 +29,7 @@ export const getOptionsToConnect = () => {
   urlencoded.append("code", codeToGetAccess);
   urlencoded.append("redirect_uri", String(process.env.REACT_APP_REDIRECT_URI));
 
-  const fetchOptions: any = {
+  const fetchOptions: {} = {
     method: "POST",
     headers: myHeaders,
     body: urlencoded,

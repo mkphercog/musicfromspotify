@@ -9,7 +9,7 @@ export interface AlbumProps {
   setAlbumDetails: Function;
 }
 
-export const Album: React.SFC<AlbumProps> = ({
+export const Album: React.FC<AlbumProps> = ({
   album,
   dispatch,
   showAlbumDetails,

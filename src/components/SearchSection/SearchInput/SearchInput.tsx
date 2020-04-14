@@ -9,7 +9,7 @@ export interface SearchInputProps {
   dispatch: Function;
 }
 
-export const SearchInput: React.SFC<SearchInputProps> = ({
+export const SearchInput: React.FC<SearchInputProps> = ({
   inputValue,
   setInputValue,
   isSearchResultsVisible,

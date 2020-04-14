@@ -18,7 +18,7 @@ import {
   setAlbumDetails,
 } from "../../store/actions/AlbumDetailsActions";
 
-export const AlbumsSection: React.SFC = () => {
+export const AlbumsSection: React.FC = () => {
   const favouriteAlbums = useSelector(
     (state: GlobalStateSelector) => state.favouriteAlbums.favouriteAlbums
   );
