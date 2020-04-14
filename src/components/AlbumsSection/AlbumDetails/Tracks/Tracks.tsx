@@ -1,6 +1,7 @@
 import React from "react";
 import "./Tracks.scss";
-import { Track } from "../../../../store/storeInterfaces";
+import { Track, AlbumDetails } from "../../../../store/storeInterfaces";
+import { playMusic } from "../../../../store/actions/PlayerActions";
 
 export interface TracksProps {
   track: Track;
@@ -9,8 +10,8 @@ export interface TracksProps {
   trackClasses: string;
   dispatch: Function;
   stopMusic: Function;
-  setAndPlayCurrentTrack: Function;
-  allTracksInAlbum: number;
+  setCurrentTrack: Function;
+  albumDetails: AlbumDetails;
 }
 
 export const Tracks: React.SFC<TracksProps> = ({
@@ -20,8 +21,8 @@ export const Tracks: React.SFC<TracksProps> = ({
   trackClasses,
   dispatch,
   stopMusic,
-  setAndPlayCurrentTrack,
-  allTracksInAlbum,
+  setCurrentTrack,
+  albumDetails,
 }) => (
   <div className="albumssection__trackWrapper">
     {track.preview_url ? (
@@ -39,7 +40,8 @@ export const Tracks: React.SFC<TracksProps> = ({
           className="albumssection__detailsTrackButton"
           onClick={() => {
             console.log(track);
-            dispatch(setAndPlayCurrentTrack(track, allTracksInAlbum));
+            dispatch(setCurrentTrack(track, albumDetails));
+            dispatch(playMusic());
           }}
         >
           Play

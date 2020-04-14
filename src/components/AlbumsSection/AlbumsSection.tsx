@@ -4,7 +4,7 @@ import "./AlbumsSection.scss";
 
 import { AlbumDetails } from "./AlbumDetails/AlbumDetails";
 import { Album } from "./Album/Album";
-import { Player } from "./Player/Player";
+import { Player } from "../Player/Player";
 
 import {
   AlbumDetails as AlbumDetailsInterface,

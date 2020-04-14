@@ -1,21 +1,47 @@
-import { SET_AND_PLAY_CURRENT_TRACK, STOP_PLAYING_TRACK } from "../types";
-import { Track } from "../storeInterfaces";
+import {
+  SET_CURRENT_TRACK,
+  STOP_PLAYING_TRACK,
+  PLAY_CURRENT_TRACK,
+  NEXT_TRACK,
+} from "../types";
+import { Track, AlbumDetails } from "../storeInterfaces";
 
-export const setAndPlayCurrentTrack = (
-  track: Track,
-  allTracksInAlbum: number
-) => {
+export const setCurrentTrack = (track: Track, albumDetails: AlbumDetails) => {
+  const tracksURLs = albumDetails.tracks.map(
+    (tracks: { preview_url: string }) => tracks.preview_url
+  );
   return {
-    type: SET_AND_PLAY_CURRENT_TRACK,
+    type: SET_CURRENT_TRACK,
     currentTrackName: track.name,
     currentTrackURL: track.preview_url,
     currentTrackNumber: track.track_number,
-    allTracksInAlbum: allTracksInAlbum,
+    allTracksInAlbum: albumDetails.totalTracks,
+    currentAlbumArtist: albumDetails.artistName,
+    tracksURLs: tracksURLs,
+  };
+};
+
+export const playMusic = () => {
+  return {
+    type: PLAY_CURRENT_TRACK,
   };
 };
 
 export const stopMusic = () => {
   return {
     type: STOP_PLAYING_TRACK,
+  };
+};
+
+export const nextTrack = (
+  currentTrackName: string,
+  currentTrackURL: string,
+  currentTrackNumber: number
+) => {
+  return {
+    type: NEXT_TRACK,
+    currentTrackName: currentTrackName,
+    currentTrackURL: currentTrackURL,
+    currentTrackNumber: currentTrackNumber,
   };
 };

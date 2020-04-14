@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@import "../../styles/variables.scss";
 
 .player {
   position: fixed;
@@ -8,7 +8,7 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  width: 25%;
+  width: 20vw;
   padding: 10px;
 
   .player__trackName {
@@ -19,10 +19,12 @@
   }
 
   .player__controlers {
-    padding: 5px;
+    padding: 8px;
     font-size: 15px;
-    background-color: transparent;
-    // border: 2px solid $green-color;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
 
     .player__prev {
       transform: rotate(180deg);

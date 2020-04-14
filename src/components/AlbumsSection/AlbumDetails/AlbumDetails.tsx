@@ -2,13 +2,14 @@ import React from "react";
 import "./AlbumDetails.scss";
 import { Tracks } from "./Tracks/Tracks";
 import {
-  setAndPlayCurrentTrack,
+  setCurrentTrack,
   stopMusic,
 } from "../../../store/actions/PlayerActions";
 import {
   Track,
   AlbumDetails as AlbumDetailsInterface,
 } from "../../../store/storeInterfaces";
+import { Player } from "../../Player/Player";
 
 export interface AlbumDetailsProps {
   albumDetails: AlbumDetailsInterface;
@@ -36,17 +37,20 @@ export const AlbumDetails: React.SFC<AlbumDetailsProps> = ({
       ? "albumssection__detailsTrackButton albumssection__detailsTrackButton--green"
       : "albumssection__detailsTrackButton";
     return (
-      <Tracks
-        key={track.id}
-        track={track}
-        isTrackPlaying={isTrackPlaying}
-        stopBtnClasses={stopBtnClasses}
-        trackClasses={trackClasses}
-        dispatch={dispatch}
-        stopMusic={stopMusic}
-        setAndPlayCurrentTrack={setAndPlayCurrentTrack}
-        allTracksInAlbum={albumDetails.totalTracks}
-      />
+      <>
+        <Tracks
+          key={track.id}
+          track={track}
+          isTrackPlaying={isTrackPlaying}
+          stopBtnClasses={stopBtnClasses}
+          trackClasses={trackClasses}
+          dispatch={dispatch}
+          stopMusic={stopMusic}
+          setCurrentTrack={setCurrentTrack}
+          albumDetails={albumDetails}
+        />
+        {/* <Player/> */}
+      </>
     );
   });
 
