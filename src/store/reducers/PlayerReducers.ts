@@ -3,7 +3,7 @@ import {
   STOP_PLAYING_TRACK,
   PLAY_CURRENT_TRACK,
   PAUSE_PLAYING_TRACK,
-  NEXT_TRACK,
+  NEXT_PREV_TRACK,
 } from "../types";
 import { GlobalState, GlobalAction } from "../storeInterfaces";
 
@@ -62,7 +62,7 @@ export const currentTrackReducer = (
         trackCurrentTime: player.currentTime,
       };
 
-    case NEXT_TRACK:
+    case NEXT_PREV_TRACK:
       player.src = action.currentTrackURL;
       return {
         ...state,

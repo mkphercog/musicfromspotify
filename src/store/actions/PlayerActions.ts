@@ -3,7 +3,7 @@ import {
   STOP_PLAYING_TRACK,
   PLAY_CURRENT_TRACK,
   PAUSE_PLAYING_TRACK,
-  NEXT_TRACK,
+  NEXT_PREV_TRACK,
 } from "../types";
 import { Track, AlbumDetails } from "../storeInterfaces";
 
@@ -43,7 +43,7 @@ export const nextTrack = (
   currentTrackNumber: number
 ) => {
   return {
-    type: NEXT_TRACK,
+    type: NEXT_PREV_TRACK,
     currentTrackName: currentTrackName,
     currentTrackURL: currentTrackURL,
     currentTrackNumber: currentTrackNumber,
