@@ -38,6 +38,7 @@ export const AlbumsSection: React.FC = () => {
       dispatch={dispatch}
       showAlbumDetails={showAlbumDetails}
       setAlbumDetails={setAlbumDetails}
+      tracksNowPlaying={tracks}
     />
   ));
 

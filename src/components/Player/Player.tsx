@@ -66,7 +66,6 @@ export const Player: React.FC<PlayerProps> = ({ tracks }) => {
     if (currentTrackURL) {
       if (currentTrackNumber === allTracksInAlbum) {
         const getTrack = tracks.filter((track) => track.track_number === 1);
-        console.log(getTrack);
         dispatch(nextTrack(getTrack[0].name, getTrack[0].preview_url, 1));
       } else {
         const getTrack = tracks.filter(

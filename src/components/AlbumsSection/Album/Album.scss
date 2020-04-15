@@ -6,6 +6,27 @@
   align-items: center;
 }
 
+.albums-section__note {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  color: $green-color;
+  font-size: 65px;
+  text-shadow: 0 0 0 $green-color;
+  border-radius: 50%;
+  animation: shadow 0.8s ease alternate-reverse infinite;
+
+  @keyframes shadow {
+    from {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+  }
+}
+
 .albums-section__image {
   width: 75vw;
   margin: 10px;

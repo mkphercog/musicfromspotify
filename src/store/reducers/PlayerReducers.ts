@@ -52,6 +52,8 @@ export const currentTrackReducer = (
         currentTrackNumber: "",
         allTracksInAlbum: 0,
         currentAlbumArtist: "",
+        tracks: [],
+        trackCurrentTime: 0,
       };
 
     case PAUSE_PLAYING_TRACK:

@@ -7,6 +7,7 @@ export interface AlbumProps {
   dispatch: Function;
   showAlbumDetails: Function;
   setAlbumDetails: Function;
+  tracksNowPlaying: [];
 }
 
 export const Album: React.FC<AlbumProps> = ({
@@ -14,9 +15,14 @@ export const Album: React.FC<AlbumProps> = ({
   dispatch,
   showAlbumDetails,
   setAlbumDetails,
+  tracksNowPlaying,
 }) => (
   <div className="albums-section__wrapper">
     <img src={album.albumIMG} alt="Album" className="albums-section__image" />
+    {album.tracks === tracksNowPlaying ? (
+      <i className="fab fa-itunes-note albums-section__note"></i>
+    ) : null}
+
     <div
       className="albums-section__hover-div"
       onClick={() => {
