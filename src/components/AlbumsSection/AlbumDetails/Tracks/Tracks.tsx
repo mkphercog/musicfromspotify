@@ -33,23 +33,22 @@ export const Tracks: React.FC<TracksProps> = ({
             dispatch(stopMusic());
           }}
         >
-          Stop
+          <i className="fas fa-stop"></i>
         </button>
       ) : (
         <button
           className="albums-section__details-track-button"
           onClick={() => {
-            console.log(track);
             dispatch(setCurrentTrack(track, albumDetails));
             dispatch(playMusic());
           }}
         >
-          Play
+          <i className="fas fa-play"></i>
         </button>
       )
     ) : (
       <button className="albums-section__details-track-button" disabled>
-        Play
+        <i className="fas fa-play"></i>
       </button>
     )}
 

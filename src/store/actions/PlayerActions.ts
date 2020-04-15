@@ -2,14 +2,12 @@ import {
   SET_CURRENT_TRACK,
   STOP_PLAYING_TRACK,
   PLAY_CURRENT_TRACK,
+  PAUSE_PLAYING_TRACK,
   NEXT_TRACK,
 } from "../types";
 import { Track, AlbumDetails } from "../storeInterfaces";
 
 export const setCurrentTrack = (track: Track, albumDetails: AlbumDetails) => {
-  const tracksURLs = albumDetails.tracks.map(
-    (tracks: { preview_url: string }) => tracks.preview_url
-  );
   return {
     type: SET_CURRENT_TRACK,
     currentTrackName: track.name,
@@ -17,7 +15,7 @@ export const setCurrentTrack = (track: Track, albumDetails: AlbumDetails) => {
     currentTrackNumber: track.track_number,
     allTracksInAlbum: albumDetails.totalTracks,
     currentAlbumArtist: albumDetails.artistName,
-    tracksURLs: tracksURLs,
+    tracks: albumDetails.tracks,
   };
 };
 
@@ -30,6 +28,12 @@ export const playMusic = () => {
 export const stopMusic = () => {
   return {
     type: STOP_PLAYING_TRACK,
+  };
+};
+
+export const pauseMusic = () => {
+  return {
+    type: PAUSE_PLAYING_TRACK,
   };
 };
 

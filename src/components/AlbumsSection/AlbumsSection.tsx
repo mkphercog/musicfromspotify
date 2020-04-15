@@ -28,7 +28,7 @@ export const AlbumsSection: React.FC = () => {
   );
 
   const { albumDetails, isAlbumDetailsVisible } = detailsAlbum;
-  const { currentTrackURL, isPlaying } = player;
+  const { currentTrackURL, isPlaying, tracks } = player;
   const dispatch = useDispatch();
 
   const renderAlbums = favouriteAlbums.map((album: AlbumDetailsInterface) => (
@@ -61,7 +61,7 @@ export const AlbumsSection: React.FC = () => {
           deleteAlbumFromList={deleteAlbumFromList}
         />
       ) : null}
-      <Player tracks={albumDetails.tracks} />
+      {isPlaying || currentTrackURL ? <Player tracks={tracks} /> : null}
     </section>
   );
 };

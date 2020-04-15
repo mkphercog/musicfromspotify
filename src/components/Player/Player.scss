@@ -3,29 +3,54 @@
 .player {
   position: fixed;
   bottom: 0;
-  right: 0;
+  left: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  width: 20vw;
-  padding: 10px;
+  width: 100%;
+  padding: 5px;
+  background-color: $basic-bgc-color;
 }
 
 .player__track-name {
   width: 100%;
   padding: 5px;
   text-align: center;
-  font-size: 15px;
+  font-size: 13px;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.player__btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+
+  @media (min-width: 1024px) {
+    width: 15%;
+  }
 }
 
 .player__controlers {
-  padding: 8px;
-  font-size: 15px;
-  background-color: black;
-  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  background-color: transparent;
+  color: black;
   border: none;
   cursor: pointer;
+
+  @media (orientation: landscape) {
+    font-size: 17px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 26px;
+  }
 }
 
 .player__prev {

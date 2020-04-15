@@ -9,7 +9,7 @@ import {
   Track,
   AlbumDetails as AlbumDetailsInterface,
 } from "../../../store/storeInterfaces";
-import { Player } from "../../Player/Player";
+// import { Player } from "../../Player/Player";
 
 export interface AlbumDetailsProps {
   albumDetails: AlbumDetailsInterface;
@@ -37,20 +37,17 @@ export const AlbumDetails: React.FC<AlbumDetailsProps> = ({
       ? "albums-section__details-track-button albums-section__details-track-button--green"
       : "albums-section__details-track-button";
     return (
-      <>
-        <Tracks
-          key={track.id}
-          track={track}
-          isTrackPlaying={isTrackPlaying}
-          stopBtnClasses={stopBtnClasses}
-          trackClasses={trackClasses}
-          dispatch={dispatch}
-          stopMusic={stopMusic}
-          setCurrentTrack={setCurrentTrack}
-          albumDetails={albumDetails}
-        />
-        {/* <Player/> */}
-      </>
+      <Tracks
+        key={track.id}
+        track={track}
+        isTrackPlaying={isTrackPlaying}
+        stopBtnClasses={stopBtnClasses}
+        trackClasses={trackClasses}
+        dispatch={dispatch}
+        stopMusic={stopMusic}
+        setCurrentTrack={setCurrentTrack}
+        albumDetails={albumDetails}
+      />
     );
   });
 

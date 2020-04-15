@@ -26,7 +26,8 @@ interface PlayerState {
   currentTrackNumber: number;
   allTracksInAlbum: number;
   currentAlbumArtist: string;
-  tracksURLs: string[];
+  tracks: [];
+  trackCurrentTime: number;
 }
 
 interface AlbumDetailsState {

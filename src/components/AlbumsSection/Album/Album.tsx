@@ -20,7 +20,6 @@ export const Album: React.FC<AlbumProps> = ({
     <div
       className="albums-section__hover-div"
       onClick={() => {
-        dispatch(showAlbumDetails());
         dispatch(
           setAlbumDetails({
             albumIMG: album.albumIMG,
@@ -32,6 +31,7 @@ export const Album: React.FC<AlbumProps> = ({
             totalTracks: album.totalTracks,
           })
         );
+        dispatch(showAlbumDetails());
       }}
     >
       <p className="albums-section__name-hover">{album.artistName}</p>

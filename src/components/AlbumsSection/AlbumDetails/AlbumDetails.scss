@@ -12,6 +12,7 @@
   background-color: $basic-bgc-color;
   border-radius: 15px;
   box-shadow: 0 0 8px 3px black;
+  z-index: 999;
 
   @media (orientation: landscape) {
     flex-direction: row;

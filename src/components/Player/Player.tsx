@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Player.scss";
 import { GlobalStateSelector } from "../../store/storeInterfaces";
 
 import {
-  stopMusic,
   playMusic,
   nextTrack,
+  pauseMusic,
+  stopMusic,
 } from "../../store/actions/PlayerActions";
 
 export interface PlayerProps {
@@ -26,77 +27,114 @@ export const Player: React.FC<PlayerProps> = ({ tracks }) => {
     currentTrackName,
     currentAlbumArtist,
     currentTrackNumber,
-    tracksURLs,
     allTracksInAlbum,
+    isPlaying,
+    trackCurrentTime,
   } = player;
 
-  const play = () => {};
+  useEffect(() => {
+    let idInterval: NodeJS.Timeout;
+    if (isPlaying) {
+      idInterval = setInterval(() => {
+        dispatch(pauseMusic());
+        next();
+      }, 30000 - trackCurrentTime * 1000);
+    }
+
+    return () => clearInterval(idInterval);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPlaying, currentTrackURL]);
+
+  const play = () => {
+    if (currentTrackURL) {
+      dispatch(playMusic());
+    } else return;
+  };
+
+  const pause = () => {
+    if (currentTrackURL) dispatch(pauseMusic());
+    else return;
+  };
 
   const stop = () => {
-    dispatch(stopMusic());
+    if (currentTrackURL) dispatch(stopMusic());
+    else return;
   };
 
   const next = () => {
-    if (currentTrackNumber === allTracksInAlbum) {
-      const name = tracks.filter((track) => track.track_number === 1);
-      dispatch(nextTrack(name[0].name, tracksURLs[0], 1));
-    } else {
-      const name = tracks.filter(
-        (track) => track.track_number === currentTrackNumber + 1
-      );
-      dispatch(
-        nextTrack(
-          name[0].name,
-          tracksURLs[currentTrackNumber],
-          currentTrackNumber + 1
-        )
-      );
-    }
-    dispatch(playMusic());
+    if (currentTrackURL) {
+      if (currentTrackNumber === allTracksInAlbum) {
+        const getTrack = tracks.filter((track) => track.track_number === 1);
+
+        dispatch(nextTrack(getTrack[0].name, getTrack[0].preview_url, 1));
+      } else {
+        const getTrack = tracks.filter(
+          (track) => track.track_number === currentTrackNumber + 1
+        );
+        dispatch(
+          nextTrack(
+            getTrack[0].name,
+            getTrack[0].preview_url,
+            getTrack[0].track_number
+          )
+        );
+      }
+      dispatch(playMusic());
+    } else return;
   };
 
   const prev = () => {
-    if (currentTrackNumber === 1) {
-      const name = tracks.filter(
-        (track) => track.track_number === allTracksInAlbum
-      );
-      dispatch(
-        nextTrack(
-          name[0].name,
-          tracksURLs[allTracksInAlbum - 1],
-          allTracksInAlbum
-        )
-      );
-    } else {
-      const name = tracks.filter(
-        (track) => track.track_number === currentTrackNumber - 1
-      );
-      dispatch(
-        nextTrack(
-          name[0].name,
-          tracksURLs[currentTrackNumber - 2],
-          currentTrackNumber - 1
-        )
-      );
-    }
-    dispatch(playMusic());
+    if (currentTrackURL) {
+      if (currentTrackNumber === 1) {
+        const getTrack = tracks.filter(
+          (track) => track.track_number === allTracksInAlbum
+        );
+        dispatch(
+          nextTrack(getTrack[0].name, getTrack[0].preview_url, allTracksInAlbum)
+        );
+      } else {
+        const getTrack = tracks.filter(
+          (track) => track.track_number === currentTrackNumber - 1
+        );
+        dispatch(
+          nextTrack(
+            getTrack[0].name,
+            getTrack[0].preview_url,
+            currentTrackNumber - 1
+          )
+        );
+      }
+      dispatch(playMusic());
+    } else return;
   };
 
   return (
     <div className="player">
-      <p className="player__track-name">{`${currentAlbumArtist} - ${currentTrackName}`}</p>
-      <button className="player__controlers" onClick={prev}>
-        <i className="fas fa-step-forward player__prev"></i>
-      </button>
-      <button className="player__controlers" onClick={stop}>
-        <i className="fas fa-pause"></i>
-      </button>
-      <button className="player__controlers" onClick={play}>
-        <i className="fas fa-play"></i>
-      </button>
-      <button className="player__controlers" onClick={next}>
-        <i className="fas fa-step-forward"></i>
-      </button>
+      <p className="player__track-name">{`${
+        currentTrackNumber ? currentTrackNumber : ""
+      }. ${currentAlbumArtist} - ${currentTrackName}`}</p>
+
+      <div className="player__btn-wrapper">
+        <button className="player__controlers" onClick={prev}>
+          <i className="fas fa-step-forward player__prev"></i>
+        </button>
+        <button className="player__controlers" onClick={stop}>
+          <i className="fas fa-stop"></i>
+        </button>
+        {isPlaying ? (
+          <button className="player__controlers" onClick={pause}>
+            <i className="fas fa-pause"></i>
+          </button>
+        ) : (
+          <button className="player__controlers" onClick={play}>
+            <i className="fas fa-play"></i>
+          </button>
+        )}
+        <button className="player__controlers" onClick={next}>
+          <i className="fas fa-step-forward"></i>
+        </button>
+      </div>
     </div>
   );
 };
