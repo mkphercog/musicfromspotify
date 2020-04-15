@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "483972a33e337cf030abd19c9998f6a2",
+    "revision": "09b48a13e70b9e97eff74e24e84b98e1",
     "url": "/musicfromspotify/index.html"
   },
   {
-    "revision": "8470087697e251fd97fd",
-    "url": "/musicfromspotify/static/css/main.999942df.chunk.css"
+    "revision": "29c76de6df0ae978fcc4",
+    "url": "/musicfromspotify/static/css/main.a233108e.chunk.css"
   },
   {
     "revision": "e51f3c126d0fa9c39964",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/musicfromspotify/static/js/2.f3ca3788.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8470087697e251fd97fd",
-    "url": "/musicfromspotify/static/js/main.ab8d09fa.chunk.js"
+    "revision": "29c76de6df0ae978fcc4",
+    "url": "/musicfromspotify/static/js/main.af779ede.chunk.js"
   },
   {
     "revision": "3edeb2cea739ed61c65d",
