@@ -18,7 +18,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 }) => (
   <input
     className="search-section__input"
-    placeholder="Wyszukaj album / artystę..."
+    placeholder="Wyszukaj..."
     type="text"
     value={inputValue}
     onClick={() => {

@@ -27,7 +27,11 @@
 .player__btn-wrapper {
   display: flex;
   justify-content: space-between;
-  width: 30%;
+  width: 38%;
+
+  @media (orientation: landscape) {
+    width: 25%;
+  }
 
   @media (min-width: 1024px) {
     width: 15%;

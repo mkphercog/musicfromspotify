@@ -30,15 +30,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 10px;
 
   @media (orientation: landscape) {
     flex-basis: 45%;
+    overflow-y: auto;
   }
 
   @media (min-width: 1024px) {
     flex-basis: 40%;
+    justify-content: center;
     overflow-y: auto;
   }
 }
@@ -106,6 +108,11 @@
   }
 }
 
+.albums-section__details-name-wrapper {
+  margin: 10px;
+  text-align: center;
+}
+
 .albums-section__details-artist-name {
   margin: 3px;
   font-size: 18px;
@@ -117,11 +124,6 @@
   @media (min-width: 1024px) {
     font-size: 25px;
   }
-}
-
-.albums-section__details-name-wrapper {
-  margin: 10px;
-  text-align: center;
 }
 
 .albums-section__details-album-name {
