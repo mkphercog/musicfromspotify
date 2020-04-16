@@ -47,65 +47,57 @@ export const Player: React.FC<PlayerProps> = ({ tracks }) => {
   }, [isPlaying, currentTrackURL]);
 
   const play = () => {
-    if (currentTrackURL) {
-      dispatch(playMusic());
-    } else return;
+    dispatch(playMusic());
   };
 
   const pause = () => {
-    if (currentTrackURL) dispatch(pauseMusic());
-    else return;
+    dispatch(pauseMusic());
   };
 
   const stop = () => {
-    if (currentTrackURL) dispatch(stopMusic());
-    else return;
+    dispatch(stopMusic());
   };
 
   const next = () => {
-    if (currentTrackURL) {
-      if (currentTrackNumber === allTracksInAlbum) {
-        const getTrack = tracks.filter((track) => track.track_number === 1);
-        dispatch(nextTrack(getTrack[0].name, getTrack[0].preview_url, 1));
-      } else {
-        const getTrack = tracks.filter(
-          (track) => track.track_number === currentTrackNumber + 1
-        );
-        dispatch(
-          nextTrack(
-            getTrack[0].name,
-            getTrack[0].preview_url,
-            getTrack[0].track_number
-          )
-        );
-      }
-      dispatch(playMusic());
-    } else return;
+    if (currentTrackNumber === allTracksInAlbum) {
+      const getTrack = tracks.filter((track) => track.track_number === 1);
+      dispatch(nextTrack(getTrack[0].name, getTrack[0].preview_url, 1));
+    } else {
+      const getTrack = tracks.filter(
+        (track) => track.track_number === currentTrackNumber + 1
+      );
+      dispatch(
+        nextTrack(
+          getTrack[0].name,
+          getTrack[0].preview_url,
+          getTrack[0].track_number
+        )
+      );
+    }
+    dispatch(playMusic());
   };
 
   const prev = () => {
-    if (currentTrackURL) {
-      if (currentTrackNumber === 1) {
-        const getTrack = tracks.filter(
-          (track) => track.track_number === allTracksInAlbum
-        );
-        dispatch(
-          nextTrack(getTrack[0].name, getTrack[0].preview_url, allTracksInAlbum)
-        );
-      } else {
-        const getTrack = tracks.filter(
-          (track) => track.track_number === currentTrackNumber - 1
-        );
-        dispatch(
-          nextTrack(
-            getTrack[0].name,
-            getTrack[0].preview_url,
-            currentTrackNumber - 1
-          )
-        );
-      }
-      dispatch(playMusic());
-    } else return;
+    if (currentTrackNumber === 1) {
+      const getTrack = tracks.filter(
+        (track) => track.track_number === allTracksInAlbum
+      );
+      dispatch(
+        nextTrack(getTrack[0].name, getTrack[0].preview_url, allTracksInAlbum)
+      );
+    } else {
+      const getTrack = tracks.filter(
+        (track) => track.track_number === currentTrackNumber - 1
+      );
+      dispatch(
+        nextTrack(
+          getTrack[0].name,
+          getTrack[0].preview_url,
+          currentTrackNumber - 1
+        )
+      );
+    }
+    dispatch(playMusic());
   };
 
   return (

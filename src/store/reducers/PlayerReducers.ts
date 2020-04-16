@@ -39,7 +39,7 @@ export const currentTrackReducer = (
         trackCurrentTime: player.currentTime,
       };
     case PLAY_CURRENT_TRACK:
-      player.play();
+      if (player.src !== "https://p.scdn.co/mp3-preview/") player.play();
       return { ...state, isPlaying: true };
 
     case STOP_PLAYING_TRACK:
@@ -65,11 +65,14 @@ export const currentTrackReducer = (
       };
 
     case NEXT_PREV_TRACK:
-      player.src = action.currentTrackURL;
+      const src = action.currentTrackURL
+        ? action.currentTrackURL
+        : "https://p.scdn.co/mp3-preview/";
+      player.src = src;
       return {
         ...state,
         currentTrackName: action.currentTrackName,
-        currentTrackURL: action.currentTrackURL,
+        currentTrackURL: src,
         currentTrackNumber: action.currentTrackNumber,
         trackCurrentTime: 0,
       };
