@@ -5,10 +5,16 @@ The application requires loggin into Spotify. When I writing the app I learned h
 ## If you want you can copy this app, for that use command:
 
 ```
-git clone https://github.com/mkphercog/musicfromspotify
+git clone https://github.com/mkphercog/musicfromspotify.git
 ```
 
-After that you should create file .env.local with:
+### After that in cloned folder use:
+
+```
+npm install
+```
+
+You should also create file .env.local in global folder with:
 
 - REACT_APP_CLIENT_ID - your ID from https://developer.spotify.com/
 - REACT_APP_CLIENT_SECRET - your secret key also from https://developer.spotify.com/
