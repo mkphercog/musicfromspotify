@@ -7,7 +7,7 @@ export const Footer: React.FC = () => (
       Projekt i realizacja{" "}
       <a
         className="footer__author--link"
-        href="https://mkphercog.github.io/mywebsite"
+        href="https://marcin-hercog.netlify.app"
         target="_blank"
         rel="noopener noreferrer"
       >
