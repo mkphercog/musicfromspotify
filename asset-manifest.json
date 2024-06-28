@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/musicfromspotify/static/css/main.9c5dca8d.chunk.css",
-    "main.js": "/musicfromspotify/static/js/main.25a358bf.chunk.js",
-    "main.js.map": "/musicfromspotify/static/js/main.25a358bf.chunk.js.map",
+    "main.css": "/musicfromspotify/static/css/main.035c6c0b.chunk.css",
+    "main.js": "/musicfromspotify/static/js/main.2901a36b.chunk.js",
+    "main.js.map": "/musicfromspotify/static/js/main.2901a36b.chunk.js.map",
     "runtime-main.js": "/musicfromspotify/static/js/runtime-main.b8f53c11.js",
     "runtime-main.js.map": "/musicfromspotify/static/js/runtime-main.b8f53c11.js.map",
     "static/js/2.f3ca3788.chunk.js": "/musicfromspotify/static/js/2.f3ca3788.chunk.js",
     "static/js/2.f3ca3788.chunk.js.map": "/musicfromspotify/static/js/2.f3ca3788.chunk.js.map",
     "index.html": "/musicfromspotify/index.html",
-    "precache-manifest.1e8f9d4280c6ac999377bbd4d453a647.js": "/musicfromspotify/precache-manifest.1e8f9d4280c6ac999377bbd4d453a647.js",
+    "precache-manifest.e3301610fdaf03d3d6e766ed9fe42963.js": "/musicfromspotify/precache-manifest.e3301610fdaf03d3d6e766ed9fe42963.js",
     "service-worker.js": "/musicfromspotify/service-worker.js",
-    "static/css/main.9c5dca8d.chunk.css.map": "/musicfromspotify/static/css/main.9c5dca8d.chunk.css.map",
+    "static/css/main.035c6c0b.chunk.css.map": "/musicfromspotify/static/css/main.035c6c0b.chunk.css.map",
     "static/js/2.f3ca3788.chunk.js.LICENSE.txt": "/musicfromspotify/static/js/2.f3ca3788.chunk.js.LICENSE.txt",
     "static/media/loginHeadphones.jpg": "/musicfromspotify/static/media/loginHeadphones.1df5799c.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.b8f53c11.js",
     "static/js/2.f3ca3788.chunk.js",
-    "static/css/main.9c5dca8d.chunk.css",
-    "static/js/main.25a358bf.chunk.js"
+    "static/css/main.035c6c0b.chunk.css",
+    "static/js/main.2901a36b.chunk.js"
   ]
 }
